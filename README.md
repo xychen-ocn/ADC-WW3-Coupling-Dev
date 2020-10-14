@@ -4,7 +4,8 @@ The coupling between ADCIRC and WW3 is done with the Earth System Modeling Frame
 The coupling is developed by NOAA COASTAL ACT group. (NEMS)
 
 ## Structure of this repository:
-### Source Codes
+### Source Codes 
+The source codes come from the a forked repository. (I am not sure if I can upload the source code to this repository.
 
 ### Benchmark Case
 In this folder, I will provide the setup for the ADCIRC model and the input field as in the storm surge paper that I have been working on.
