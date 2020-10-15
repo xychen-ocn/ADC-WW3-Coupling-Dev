@@ -1,0 +1,7 @@
+WW3 component is in version 6.
+MPI comipler: intel, mvapich2/xxx_nemisisXXX
+parMETIS: compiled with shared=0;
+
+build warning:
+ld: warning: libhdf5.so.101, needed by /usr/share/Modules/software/CentOS-7/netcdf-C/4.5.0_intel-18.0.0/lib/libnetcdf.so, may conflict with libhdf5.so.103
+
