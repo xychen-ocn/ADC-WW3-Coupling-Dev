@@ -153,10 +153,10 @@ module wav_mod
       call check( nf90_inq_varid(ncid, SXX_NAME,    SXX_varid) )
       call check( nf90_inq_varid(ncid, SYY_NAME,    SYY_varid) )
       call check( nf90_inq_varid(ncid, SXY_NAME,    SXY_varid) )
-      print *, 'Debug: reading ssdwsx/y'
+!      print *, 'Debug: reading ssdwsx/y'
       call check( nf90_inq_varid(ncid, SSDWSX_NAME, SSDWSX_varid) )
       call check( nf90_inq_varid(ncid, SSDWSY_NAME, SSDWSY_varid) )
-      print *, 'Debug: read success (ssdwsx/y)'
+!      print *, 'Debug: read success (ssdwsx/y)'
       call check( nf90_inq_varid(ncid, TRI_NAME,    TRI_varid) )
 
       !allocate vars
@@ -274,7 +274,7 @@ module wav_mod
       if(.not. allocated(SSDWSY)) allocate(SSDWSY(1:nnode,1))
       
       call check( nf90_get_var(ncid,SSDWSX_varid, SSDWSX, start, count ) )
-      call check( nf90_get_var(ncid,SSDWSY_varid, SSDWSX, start, count ) )
+      call check( nf90_get_var(ncid,SSDWSY_varid, SSDWSY, start, count ) )
 
       !print *,FILE_NAME , '   HARD CODED for NOWWWW>>>>>     Time index from wave file is > ', it, SXX(1:10,1)
 

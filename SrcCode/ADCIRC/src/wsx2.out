@@ -1,0 +1,124 @@
+cstart.F:         WSX2(I)=0.D0
+cstart.F:               WSX2(I)=0.D0
+global_3dvs.F:     &       WSX2, WSY2,                   !WSX2(MNP),WSY2(MNP) = Wind stress components at time level s+1
+global.F:      REAL(SZ),ALLOCATABLE ::   WSX2(:),WSY2(:)
+global.F:      ALLOCATE ( WSX2(MNP),WSY2(MNP),PR2(MNP) )
+global.F:      WSX2(:) = 0.0d0
+hstart.F:               READ(22,*) NHG,WSX2(I),WSY2(I),PR2(I)
+hstart.F:            WSX2(I)=RampMete2*WSX2(I)
+hstart.F:            WSX2(I) = RampMete2*WINDX
+hstart.F:            WSX2(I) = RampMete2*WVNX1(I)
+hstart.F:            WSX2(I)=RampMete2*0.001293d0*WDRAGCO*WINDX*WINDMAG
+hstart.F:            WSX2(I) = RampMete2*0.001293d0*WDRAGCO*WINDX*WINDMAG
+hstart.F:            WSX2(I) = RampMete2*0.001293d0*WDRAGCO*WINDX*WINDMAG
+hstart.F:            WSX2(I) = RampMete2*0.001293d0*WDRAGCO*WINDX*WINDMAG
+hstart.F:            WSX2(I) = RampMete2*0.001293d0*WDRAGCO*WINDX*WINDMAG
+hstart.F:            WSX2(I) = RampMete2*0.001293d0*WDRAGCO*WINDX*WINDMAG
+hstart.F:            WSX2(I) = RampMete2*WindX !apply ramp
+hstart.F:            wvnxout(i)=WSX2(i) !for met recording sta. output
+hstart.F:            WSX2(I) = RampMete2*WindX !apply ramp
+hstart.F:            wvnxout(i)=WSX2(i) !for met recording sta. output
+hstart.F:            WSX2(I) = RampMete2*0.001293d0*WDragCo*WindX*WindMag
+hstart.F:            WSX2(I) = RampMete2*0.001293d0*WDragCo*WindX*WindMag
+hstart.F:            WSX2(I) = RampMete2*0.001293d0*WDragCo*WindX*WindMag
+hstart.F:            WSX2(I) = RampMete2*0.001293d0*WDRAGCO*WINDX*WINDMAG
+hstart.F:            WSX2(I) = RampMete2*0.001293d0*WDRAGCO*WINDX*WINDMAG
+hstart.F:            WSX2(I) = bf*RampMete2*0.001293d0*WDragCo*WindX*WindMag
+hstart.F:     &               +(1.0d0-bf)*WSX2(I)
+hstart.F:            WSX2(I) = RampMete2*0.001293d0*WDRAGCO*WINDX*WINDMAG
+hstart.F:            WSX2(I) = RampMete2*0.001293d0*WDRAGCO*WINDX*WINDMAG
+hstart.F:             WSX2(I) = RampMete2*0.001293d0*WDRAGCO*WINDX*WINDMAG
+hstart.F:             WSX2(I) = RampMete2*0.001293d0*WDRAGCO*WINDX*WINDMAG
+hstart.F:             WSX2(I) = RampMete2*0.001293d0*WDRAGCO*WINDX*WINDMAG
+hstart.F:             WSX2(I) = RampMete2*0.001293d0*WDRAGCO*WINDX*WINDMAG
+hstart.F:             WSX2(I) = RampMete2*0.001293d0*WDRAGCO*WINDX*WINDMAG
+hstart.F:           WSX2(:) = WSX2(:) + RampWRad2 * RSNX1(:)
+hstart.F:           !print *, 'in_hstart max(WSX2)', maxval(abs(WSX2))
+hstart.F:!            WSX2(I) = WSX2(I)+RampWRad2*RSNX1(I)
+timestep.F:            WSX1(I)=WSX2(I)
+timestep.F:            WSX2(I)=0.D0
+timestep.F:            READ(22,*) NHG,WSX2(I),WSY2(I),PR2(I) !read in
+timestep.F:            WSX2(I)=RampMete*WSX2(I) ! apply ramp function
+timestep.F:            wvnxout(i)=WSX2(i) ! for met recording station output
+timestep.F:            WSX2(I) = RampMete*WindX !apply ramp
+timestep.F:            wvnxout(i)=WSX2(i) !for met recording sta. output
+timestep.F:            WSX2(I) = RampMete*0.001293d0*WDragCo*WindX*WindMag
+timestep.F:            WSX2(I) = RampMete*0.001293d0*WDragCo*WindX*WindMag
+timestep.F:            WSX2(I) = RampMete*0.001293d0*WDragCo*WindX*WindMag
+timestep.F:            WSX2(I) = RampMete*0.001293d0*WDragCo*WindX*WindMag
+timestep.F:            WSX2(I) = RampMete*WindX !apply ramp
+timestep.F:            wvnxout(i)=WSX2(i) !for met recording sta. output
+timestep.F:            WSX2(I) = RampMete*0.001293d0*WDragCo*WindX*WindMag
+timestep.F:            WSX2(I) = RampMete*0.001293d0*WDragCo*WindX*WindMag
+timestep.F:            WSX2(I) = RampMete*0.001293d0*WDragCo*WindX*WindMag
+timestep.F:            WSX2(I) = RampMete*0.001293d0*WDRAGCO*WINDX*WINDMAG
+timestep.F:C            WVNXOUT(I)=WSX2(I)
+timestep.F:            WSX2(I) = RampMete*0.001293d0*WDragCo*WindX*WindMag
+timestep.F:            WSX2(I) = RampMete*0.001293d0*WDragCo*WindX*WindMag
+timestep.F:            WSX2(I) = RampMete*0.001293d0*WDRAGCO*WINDX*WINDMAG
+timestep.F:            WSX2(I) = bf*RampMete*0.001293d0*WDragCo*WindX*WindMag
+timestep.F:     &               +(1.0d0-bf)*WSX2(I)
+timestep.F:             WSX2(I) = RampMete*0.001293d0*WDRAGCO*WINDX*WINDMAG
+timestep.F:            WSX2(I) = RampMete*0.001293d0*WDRAGCO*WINDX*WINDMAG
+timestep.F:            WSX2(I) = RampMete*0.001293d0*WDragCo*WindX*WindMag
+timestep.F:            WVNXOUT(I)=WSX2(I)
+timestep.F:          !if (abs(WSX2(I)) .gt. 1e2) then
+timestep.F:          !    print *, 'IT,I,WSX1,WSX2  > ' ,IT,I,WSX1(I),WSY2(I)
+timestep.F:              !WSX2(I) = 1e-10
+timestep.F:         print *, '[debug:nws=18]: maxwsx2_in=', maxval(WSX2)
+timestep.F:            WindX = WSX1(I) + WTRatio*(WSX2(I)-WSX1(I))
+timestep.F:            WSX2(I) = RampMete*WindX*0.001293d0 !apply ramp, 
+timestep.F:            WVNXOUT(I)=WSX2(I)
+timestep.F:!          print *, 'IT,TimeLoc,maxval(WSX1),  maxval(WSX1)  > ' ,IT,TimeLoc, maxval(WSX1), maxval(WSX2)
+timestep.F:            WSX2(I)=sponge(I)*WSX2(I)
+timestep.F:               WSX2(I) =  WSX2(I) +  RSX  ! TODO: JUST a TEST >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+timestep.F:         ! Apply the ramping function and add wave stress to WSX2,WSY2
+timestep.F:               WSX2(I) = WSX2(I) + RSX
+timestep.F:!        print *, 'IT,TimeLoc,maxval(WSX1), maxval(WSX2) > '  ,IT,TimeLoc, maxval(WSX1), maxval(WSX2)
+timestep.F:            WSX=DTO2*IFWIND*(WSX1(I)/H1+WSX2(I)/H2)
+timestep.F:            WSX=DTO2*IFWIND*(WSX1(I)/H1+WSX2(I)/H2)
+timestep.F:            WSX=DTO2*IFWIND*(WSX1(I)+WSX2(I))
+timestep.F:            WSX=DTO2*IFWIND*(WSX1(I)/H1+WSX2(I)/H2)
+timestep_orig.F:            WSX1(I)=WSX2(I)
+timestep_orig.F:            WSX2(I)=0.D0
+timestep_orig.F:            READ(22,*) NHG,WSX2(I),WSY2(I),PR2(I) !read in
+timestep_orig.F:            WSX2(I)=RampMete*WSX2(I) ! apply ramp function
+timestep_orig.F:            wvnxout(i)=WSX2(i) ! for met recording station output
+timestep_orig.F:            WSX2(I) = RampMete*WindX !apply ramp
+timestep_orig.F:            wvnxout(i)=WSX2(i) !for met recording sta. output
+timestep_orig.F:            WSX2(I) = RampMete*0.001293d0*WDragCo*WindX*WindMag
+timestep_orig.F:            WSX2(I) = RampMete*0.001293d0*WDragCo*WindX*WindMag
+timestep_orig.F:            WSX2(I) = RampMete*0.001293d0*WDragCo*WindX*WindMag
+timestep_orig.F:            WSX2(I) = RampMete*0.001293d0*WDragCo*WindX*WindMag
+timestep_orig.F:            WSX2(I) = RampMete*WindX !apply ramp
+timestep_orig.F:            wvnxout(i)=WSX2(i) !for met recording sta. output
+timestep_orig.F:            WSX2(I) = RampMete*0.001293d0*WDragCo*WindX*WindMag
+timestep_orig.F:            WSX2(I) = RampMete*0.001293d0*WDragCo*WindX*WindMag
+timestep_orig.F:            WSX2(I) = RampMete*0.001293d0*WDragCo*WindX*WindMag
+timestep_orig.F:            WSX2(I) = RampMete*0.001293d0*WDRAGCO*WINDX*WINDMAG
+timestep_orig.F:C            WVNXOUT(I)=WSX2(I)
+timestep_orig.F:            WSX2(I) = RampMete*0.001293d0*WDragCo*WindX*WindMag
+timestep_orig.F:            WSX2(I) = RampMete*0.001293d0*WDragCo*WindX*WindMag
+timestep_orig.F:            WSX2(I) = RampMete*0.001293d0*WDRAGCO*WINDX*WINDMAG
+timestep_orig.F:            WSX2(I) = bf*RampMete*0.001293d0*WDragCo*WindX*WindMag
+timestep_orig.F:     &               +(1.0d0-bf)*WSX2(I)
+timestep_orig.F:             WSX2(I) = RampMete*0.001293d0*WDRAGCO*WINDX*WINDMAG
+timestep_orig.F:            WSX2(I) = RampMete*0.001293d0*WDRAGCO*WINDX*WINDMAG
+timestep_orig.F:            WSX2(I) = RampMete*0.001293d0*WDragCo*WindX*WindMag
+timestep_orig.F:      !print *, 'maxval(WSX1), maxval(WSX2) > '  , maxval(WSX1), maxval(WSX2)
+timestep_orig.F:            WSX2(I)=sponge(I)*WSX2(I)
+timestep_orig.F:            WSX2(I) = 0.001293d0*WDragCo*WindX*WindMag
+timestep_orig.F:      !print *, 'maxval(WSX1), maxval(WSX2) > ', maxval(WSX1), maxval(WSX2)
+timestep_orig.F:            WSX2(I)=sponge(I)*WSX2(I)
+timestep_orig.F:              WVNXOUT(I)= WSX2(I)  ! TODO: JUST a TEST >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
+timestep_orig.F:               WSX2(I) = 0 * WSX2(I) + RSX  ! TODO: JUST a TEST >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+timestep_orig.F:         ! Apply the ramping function and add wave stress to WSX2,WSY2
+timestep_orig.F:               WSX2(I) = WSX2(I) + RSX
+timestep_orig.F:               !WSX2 = WSX2 + RSNX2
+timestep_orig.F:               !WSX2(I) = WSX2(I) + RSX
+timestep_orig.F:               WSX2(I) =  RSX
+timestep_orig.F:            WSX=DTO2*IFWIND*(WSX1(I)/H1+WSX2(I)/H2)
+timestep_orig.F:            WSX=DTO2*IFWIND*(WSX1(I)/H1+WSX2(I)/H2)
+timestep_orig.F:            WSX=DTO2*IFWIND*(WSX1(I)+WSX2(I))
+timestep_orig.F:            WSX=DTO2*IFWIND*(WSX1(I)/H1+WSX2(I)/H2)
+vsmy.F:     &        + DelT*0.5d0*((WSX2(NH)+iy*WSY2(NH))/Hsp1OAMB

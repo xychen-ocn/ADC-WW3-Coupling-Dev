@@ -187,9 +187,9 @@ module WAV
 
 !----------------------------------------------------------------
     do num = 1,fldsFrWav_num
-        print *,  "fldsFrWav_num  ", fldsFrWav_num
-        print *,  "fldsFrWav(num)%shortname  ", fldsFrWav(num)%shortname
-        print *,  "fldsFrWav(num)%stdname  ", fldsFrWav(num)%stdname
+!        print *,  "fldsFrWav_num  ", fldsFrWav_num
+!        print *,  "fldsFrWav(num)%shortname  ", fldsFrWav(num)%shortname
+!        print *,  "fldsFrWav(num)%stdname  ", fldsFrWav(num)%stdname
         write(info,*) subname,"fldsFrWav(num)%stdname  ", fldsFrWav(num)%stdname
         call ESMF_LogWrite(info, ESMF_LOGMSG_INFO, rc=dbrc)
 
@@ -301,8 +301,8 @@ module WAV
          call fld_list_add(num=fldsFrWav_num, fldlist=fldsFrWav, stdname="eastward_northward_wave_radiation_stress",    shortname= "sxy")
 
          !--------- XYC: this is where I can start adding SSD wind stress too.
-         call fld_list_add(num=fldsFrWav_num, fldlist=fldsFrWav,stdname="eastward_sea_state_dependent_wind_stress", shortname="ssdwsx")
-         call fld_list_add(num=fldsFrWav_num, fldlist=fldsFrWav,stdname="northward_sea_state_dependent_wind_stress", shortname="ssdwsy")
+         call fld_list_add(num=fldsFrWav_num, fldlist=fldsFrWav,stdname="eastward_sea_state_dependent_fric_vel", shortname="ssdwsx")
+         call fld_list_add(num=fldsFrWav_num, fldlist=fldsFrWav,stdname="northward_sea_state_dependent_fric_vel", shortname="ssdwsy")
 
         write(info,*) subname,' --- Passed--- '
         call ESMF_LogWrite(info, ESMF_LOGMSG_INFO, rc=dbrc)
@@ -874,6 +874,9 @@ module WAV
     end do
     !assign to field
     dataPtr_ssdwsx = tmp
+    print *, 'wav.F90:'
+    print *, 'mdataOutw%owned_to_present_nodes > ',mdataOutw%owned_to_present_nodes(50:60), 'SSD_WSX > ', SSDWSX(50:60,1)
+    print *, 'max(SSDWSX) > ', maxval(tmp)
       
     !---------------------------------
     ! >>>>> PACK and send SSDWSY
@@ -889,6 +892,8 @@ module WAV
     end do
     !assign to field
     dataPtr_ssdwsy = tmp
+    print *, 'mdataOutw%owned_to_present_nodes > ',mdataOutw%owned_to_present_nodes(50:60), 'SSD_WSY > ', SSDWSY(50:60,1)
+    print *, 'max(SSDWSY) > ', maxval(tmp)
       
 
 

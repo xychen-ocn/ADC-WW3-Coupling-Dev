@@ -1,0 +1,167 @@
+couple2swan.F:     &                    WVNX2,
+couple2swan.F:         SWAN_WX2(IN,2) = WVNX2(IN)
+cstart.F:         READ(22,*) (NHG,WVNX2(I),WVNY2(I),PRN2(I),I=1,NP)
+cstart.F: 2222    CALL NWS3GET(X,Y,SLAM,SFEA,WVNX2,WVNY2,IWTIME,IWYR,WTIMED,NP,
+cstart.F:               WVNX1(I)=WVNX2(I)
+cstart.F:               WVNX1(I)=WVNX2(I)
+cstart.F:         CALL NWS4GET(WVNX2,WVNY2,PRN2,NP,RHOWAT0,G)
+cstart.F:         READ(22,*) (NHG,WVNX2(I),WVNY2(I),PRN2(I),I=1,NP)
+cstart.F:         CALL NWS6GET(X,Y,SLAM,SFEA,WVNX2,WVNY2,PRN2,NP,NWLON,NWLAT,
+cstart.F:         READ(22,*) (NHG,WVNX2(I),WVNY2(I),PRN2(I),I=1,NP)
+cstart.F:         CALL HollandGet(X,Y,SLAM,SFEA,WVNX2,WVNY2,PRN2,NP,
+cstart.F:        CALL NWS19GET(SLAM,SFEA,WVNX2,WVNY2,PRN2,NP,AsymmetricTime,ICS)
+cstart.F:        CALL NWS20GET(SLAM,SFEA,WVNX2,WVNY2,PRN2,NP,GeneralAsymTime,ICS)
+cstart.F:         CALL NWS12GET(WVNX2,WVNY2,PRN2,NP,RHOWAT0,G)
+cstart.F:         CALL NWS10GET(NWSGGWI,SLAM,SFEA,WVNX2,WVNY2,PRN2,NP,RHOWAT0,G,
+cstart.F:         CALL NWS11GET(NWSEGWI,IDSETFLG,SLAM,SFEA,WVNX2,WVNY2,PRN2,NP,
+cstart.F:        CALL NWS12GET(WVNX2,WVNY2,PRN2,NP,RHOWAT0,G)
+cstart.F:         WVNX1 = WVNX2
+global.F:      REAL(SZ),ALLOCATABLE ::   WVNX2(:),WVNY2(:),PRN2(:)
+global.F:      ALLOCATE ( WVNX2(MNP),WVNY2(MNP),PRN2(MNP) )
+hstart.F:         READ(22,*) (NHG,WVNX2(I),WVNY2(I),PRN2(I),I=1,NP)
+hstart.F:                  WVNX1(I)=WVNX2(I)
+hstart.F:                  READ(22,*) NHG,WVNX2(I),WVNY2(I),PRN2(I)
+hstart.F:            WINDX = WVNX1(I) + WTRATIO*(WVNX2(I)-WVNX1(I))
+hstart.F:         READ(22,*) (NHG,WVNX2(I),WVNY2(I),PRN2(I),I=1,NP)
+hstart.F: 2223    CALL NWS3GET(X,Y,SLAM,SFEA,WVNX2,WVNY2,IWTIME,IWYR,WTIMED,NP,
+hstart.F:               WVNX1(I)=WVNX2(I)
+hstart.F:               WVNX1(I)=WVNX2(I)
+hstart.F:                  WVNX1(I)=WVNX2(I)
+hstart.F:               CALL NWS3GET(X,Y,SLAM,SFEA,WVNX2,WVNY2,IWTIME,
+hstart.F:            WINDX = WVNX1(I) + WTRATIO*(WVNX2(I)-WVNX1(I))
+hstart.F:         CALL NWS4GET(WVNX2,WVNY2,PRN2,NP,RHOWAT0,G)
+hstart.F:                  WVNX1(I)=WVNX2(I)
+hstart.F:               CALL NWS4GET(WVNX2,WVNY2,PRN2,NP,RHOWAT0,G)
+hstart.F:            WINDX = WVNX1(I) + WTRATIO*(WVNX2(I)-WVNX1(I))
+hstart.F:         CALL NWS4GET(WVNX2,WVNY2,PRN2,NP,RHOWAT0,G)
+hstart.F:         READ(22,*) (NHG,WVNX2(I),WVNY2(I),PRN2(I),I=1,NP)
+hstart.F:                  WVNX1(I)=WVNX2(I)
+hstart.F:                  READ(22,*) NHG,WVNX2(I),WVNY2(I),PRN2(I)
+hstart.F:            WINDX = WVNX1(I) + WTRATIO*(WVNX2(I)-WVNX1(I))
+hstart.F:         READ(22,*) (NHG,WVNX2(I),WVNY2(I),PRN2(I),I=1,NP)
+hstart.F:            WINDX = WVNX1(I) + WTRATIO*(WVNX2(I)-WVNX1(I))
+hstart.F:         CALL NWS6GET(X,Y,SLAM,SFEA,WVNX2,WVNY2,PRN2,NP,NWLON,NWLAT,
+hstart.F:            WINDX = WVNX1(I) + WTRATIO*(WVNX2(I)-WVNX1(I))
+hstart.F:     &        WLATMAX,WLONMIN,WLATINC,WLONINC,ICS,RHOWAT0,G)  !TCMv49.02 Changed (WVNX2,WVNY2,PRN2) to (WVNX1,WVNY1,PRN1)
+hstart.F:         CALL NWS7GET(X,Y,SLAM,SFEA,WVNX2,WVNY2,PRN2,NP,NWLON,NWLAT,
+hstart.F:            WindX = WVNX1(I) + WTRatio*(WVNX2(I)-WVNX1(I))
+hstart.F:         CALL NWS7GET(X,Y,SLAM,SFEA,WVNX2,WVNY2,PRN2,NP,NWLON,NWLAT,
+hstart.F:         CALL NWS7GET(X,Y,SLAM,SFEA,WVNX2,WVNY2,PRN2,NP,NWLON,NWLAT,
+hstart.F:            WindX = WVNX1(I) + WTRatio*(WVNX2(I)-WVNX1(I))
+hstart.F:         CALL HollandGet(X,Y,SLAM,SFEA,WVNX2,WVNY2,PRN2,NP,
+hstart.F:            WindX = WVNX2(I)
+hstart.F:             CALL NWS19GET(SLAM,SFEA,WVNX2,WVNY2,PRN2,NP,TimeLoc, ICS)
+hstart.F:            WindX = WVNX2(I)
+hstart.F:             CALL NWS20GET(SLAM,SFEA,WVNX2,WVNY2,PRN2,NP,TimeLoc, ICS)
+hstart.F:            WindX = WVNX2(I)
+hstart.F:         CALL NWS12GET(WVNX2,WVNY2,PRN2,NP,RHOWAT0,G)
+hstart.F:                  WVNX1(I)=WVNX2(I)
+hstart.F:                CALL NWS12GET(WVNX2,WVNY2,PRN2,NP,RHOWAT0,G)
+hstart.F:            WINDX = WVNX1(I) + WTRATIO*(WVNX2(I)-WVNX1(I))
+hstart.F:         CALL NWS12GET(WVNX2,WVNY2,PRN2,NP,RHOWAT0,G)
+hstart.F:         CALL NWS10GET(NWSGGWI,SLAM,SFEA,WVNX2,WVNY2,PRN2,NP,RHOWAT0,G,
+hstart.F:            WINDX = WVNX1(I) + WTRATIO*(WVNX2(I)-WVNX1(I))
+hstart.F:         CALL NWS11GET(NWSEGWI,IDSETFLG,SLAM,SFEA,WVNX2,WVNY2,PRN2,NP,
+hstart.F:         CALL NWS11GET(NWSEGWI,IDSETFLG,SLAM,SFEA,WVNX2,WVNY2,PRN2,NP,
+hstart.F:            WINDX = WVNX1(I) + WTRATIO*(WVNX2(I)-WVNX1(I))
+hstart.F:          CALL NWS12GET(WVNX2,WVNY2,PRN2,NP,RHOWAT0,G)
+hstart.F:                   WVNX1(I)=WVNX2(I)
+hstart.F:                 CALL NWS12GET(WVNX2,WVNY2,PRN2,NP,RHOWAT0,G)
+hstart.F:             WINDX = WVNX1(I) + WTRATIO*(WVNX2(I)-WVNX1(I))
+hstart.F:          CALL NWS12GET(WVNX2,WVNY2,PRN2,NP,RHOWAT0,G)
+hstart.F:          CALL NWS15GET(WVNX2,WVNY2,PRN2,timeloc)
+hstart.F:             windx = wvnx2(i)
+hstart.F:                   WVNX1(I)=WVNX2(I)
+hstart.F:                 CALL NWS16GET(wtime2,WVNX2,WVNY2,PRN2)
+hstart.F:             WINDX = WVNX1(I) + WTRATIO*(WVNX2(I)-WVNX1(I))
+hstart.F:         WVNX1 = WVNX2
+timestep.F:               WVNX1(I)=WVNX2(I) ! move current data to old
+timestep.F:               READ(22,*) NHG,WVNX2(I),WVNY2(I),PRN2(I) ! read in
+timestep.F:            WindX = WVNX1(I) + WTRatio*(WVNX2(I)-WVNX1(I))
+timestep.F:               WVNX1(I)=WVNX2(I)
+timestep.F:            CALL NWS3GET(X,Y,SLAM,SFEA,WVNX2,WVNY2,IWTIME,IWYR,WTIMED,
+timestep.F:            WindX = WVNX1(I) + WTRatio*(WVNX2(I)-WVNX1(I))
+timestep.F:               WVNX1(I)=WVNX2(I)
+timestep.F:            CALL NWS4GET(WVNX2,WVNY2,PRN2,NP,RHOWAT0,G)
+timestep.F:            WindX = WVNX1(I) + WTRatio*(WVNX2(I)-WVNX1(I))
+timestep.F:               WVNX1(I)=WVNX2(I)
+timestep.F:               READ(22,*) NHG,WVNX2(I),WVNY2(I),PRN2(I)
+timestep.F:            WindX = WVNX1(I) + WTRatio*(WVNX2(I)-WVNX1(I))
+timestep.F:               WVNX1(I)=WVNX2(I)
+timestep.F:            CALL NWS6GET(X,Y,SLAM,SFEA,WVNX2,WVNY2,PRN2,NP,NWLON,NWLAT,
+timestep.F:            WindX = WVNX1(I) + WTRatio*(WVNX2(I)-WVNX1(I))
+timestep.F:               WVNX1(I)=WVNX2(I)
+timestep.F:            CALL NWS7GET(X,Y,SLAM,SFEA,WVNX2,WVNY2,PRN2,NP,NWLON,NWLAT,
+timestep.F:            WindX = WVNX1(I) + WTRatio*(WVNX2(I)-WVNX1(I))
+timestep.F:         CALL HollandGet(X,Y,SLAM,SFEA,WVNX2,WVNY2,PRN2,NP,
+timestep.F:            WindX = WVNX2(I)
+timestep.F:               WVNX1(I)=WVNX2(I)
+timestep.F:            CALL NWS10GET(NWSGGWI,SLAM,SFEA,WVNX2,WVNY2,PRN2,NP,RHOWAT0,
+timestep.F:            WindX = WVNX1(I) + WTRatio*(WVNX2(I)-WVNX1(I))
+timestep.F:               WVNX1(I)=WVNX2(I)
+timestep.F:            CALL NWS11GET(NWSEGWI,IDSETFLG,SLAM,SFEA,WVNX2,WVNY2,PRN2,
+timestep.F:            WindX = WVNX1(I) + WTRatio*(WVNX2(I)-WVNX1(I))
+timestep.F:              WVNX1(I)=WVNX2(I)
+timestep.F:            CALL NWS12GET(WVNX2,WVNY2,PRN2,NP,RHOWAT0,G)
+timestep.F:            WINDX = WVNX1(I) + WTRATIO*(WVNX2(I)-WVNX1(I))
+timestep.F:         CALL NWS19GET(SLAM,SFEA,WVNX2,WVNY2,PRN2,NP,AsymmetricTime,ICS)
+timestep.F:            WindX = WVNX2(I)
+timestep.F:         CALL NWS20GET(SLAM,SFEA,WVNX2,WVNY2,PRN2,NP,GeneralAsymTime,ICS)
+timestep.F:            WindX = WVNX2(I)
+timestep.F:               WVNX1(I)=WVNX2(I)
+timestep.F:            CALL NWS12GET(WVNX2,WVNY2,PRN2,NP,RHOWAT0,G)
+timestep.F:            WINDX = WVNX1(I) + WTRATIO*(WVNX2(I)-WVNX1(I))
+timestep.F:          CALL NWS15GET(WVNX2,WVNY2,PRN2,timeloc)
+timestep.F:             windx = wvnx2(i)
+timestep.F:              WVNX1(I)=WVNX2(I)
+timestep.F:            CALL NWS16GET(timeloc,WVNX2,WVNY2,PRN2)
+timestep.F:            WINDX = WVNX1(I) + WTRATIO*(WVNX2(I)-WVNX1(I))
+timestep.F:            WindX = WVNX1(I) + WTRatio*(WVNX2(I)-WVNX1(I))
+timestep.F:!        print *, 'IT,TimeLoc,maxval(WVNX1), maxval(WVNX2) > ',IT,TimeLoc, maxval(WVNX1), maxval(WVNX2)
+timestep_orig.F:               WVNX1(I)=WVNX2(I) ! move current data to old
+timestep_orig.F:               READ(22,*) NHG,WVNX2(I),WVNY2(I),PRN2(I) ! read in
+timestep_orig.F:            WindX = WVNX1(I) + WTRatio*(WVNX2(I)-WVNX1(I))
+timestep_orig.F:               WVNX1(I)=WVNX2(I)
+timestep_orig.F:            CALL NWS3GET(X,Y,SLAM,SFEA,WVNX2,WVNY2,IWTIME,IWYR,WTIMED,
+timestep_orig.F:            WindX = WVNX1(I) + WTRatio*(WVNX2(I)-WVNX1(I))
+timestep_orig.F:               WVNX1(I)=WVNX2(I)
+timestep_orig.F:            CALL NWS4GET(WVNX2,WVNY2,PRN2,NP,RHOWAT0,G)
+timestep_orig.F:            WindX = WVNX1(I) + WTRatio*(WVNX2(I)-WVNX1(I))
+timestep_orig.F:               WVNX1(I)=WVNX2(I)
+timestep_orig.F:               READ(22,*) NHG,WVNX2(I),WVNY2(I),PRN2(I)
+timestep_orig.F:            WindX = WVNX1(I) + WTRatio*(WVNX2(I)-WVNX1(I))
+timestep_orig.F:               WVNX1(I)=WVNX2(I)
+timestep_orig.F:            CALL NWS6GET(X,Y,SLAM,SFEA,WVNX2,WVNY2,PRN2,NP,NWLON,NWLAT,
+timestep_orig.F:            WindX = WVNX1(I) + WTRatio*(WVNX2(I)-WVNX1(I))
+timestep_orig.F:               WVNX1(I)=WVNX2(I)
+timestep_orig.F:            CALL NWS7GET(X,Y,SLAM,SFEA,WVNX2,WVNY2,PRN2,NP,NWLON,NWLAT,
+timestep_orig.F:            WindX = WVNX1(I) + WTRatio*(WVNX2(I)-WVNX1(I))
+timestep_orig.F:         CALL HollandGet(X,Y,SLAM,SFEA,WVNX2,WVNY2,PRN2,NP,
+timestep_orig.F:            WindX = WVNX2(I)
+timestep_orig.F:               WVNX1(I)=WVNX2(I)
+timestep_orig.F:            CALL NWS10GET(NWSGGWI,SLAM,SFEA,WVNX2,WVNY2,PRN2,NP,RHOWAT0,
+timestep_orig.F:            WindX = WVNX1(I) + WTRatio*(WVNX2(I)-WVNX1(I))
+timestep_orig.F:               WVNX1(I)=WVNX2(I)
+timestep_orig.F:            CALL NWS11GET(NWSEGWI,IDSETFLG,SLAM,SFEA,WVNX2,WVNY2,PRN2,
+timestep_orig.F:            WindX = WVNX1(I) + WTRatio*(WVNX2(I)-WVNX1(I))
+timestep_orig.F:              WVNX1(I)=WVNX2(I)
+timestep_orig.F:            CALL NWS12GET(WVNX2,WVNY2,PRN2,NP,RHOWAT0,G)
+timestep_orig.F:            WINDX = WVNX1(I) + WTRATIO*(WVNX2(I)-WVNX1(I))
+timestep_orig.F:         CALL NWS19GET(SLAM,SFEA,WVNX2,WVNY2,PRN2,NP,AsymmetricTime,ICS)
+timestep_orig.F:            WindX = WVNX2(I)
+timestep_orig.F:         CALL NWS20GET(SLAM,SFEA,WVNX2,WVNY2,PRN2,NP,GeneralAsymTime,ICS)
+timestep_orig.F:            WindX = WVNX2(I)
+timestep_orig.F:               WVNX1(I)=WVNX2(I)
+timestep_orig.F:            CALL NWS12GET(WVNX2,WVNY2,PRN2,NP,RHOWAT0,G)
+timestep_orig.F:            WINDX = WVNX1(I) + WTRATIO*(WVNX2(I)-WVNX1(I))
+timestep_orig.F:          CALL NWS15GET(WVNX2,WVNY2,PRN2,timeloc)
+timestep_orig.F:             windx = wvnx2(i)
+timestep_orig.F:              WVNX1(I)=WVNX2(I)
+timestep_orig.F:            CALL NWS16GET(timeloc,WVNX2,WVNY2,PRN2)
+timestep_orig.F:            WINDX = WVNX1(I) + WTRATIO*(WVNX2(I)-WVNX1(I))
+timestep_orig.F:            WindX = WVNX1(I) + WTRatio*(WVNX2(I)-WVNX1(I))
+timestep_orig.F:      !print *, 'maxval(WVNX1), maxval(WVNX2) > ', maxval(WVNX1), maxval(WVNX2)
+timestep_orig.F:            WindX = WVNX2(I)
+timestep_orig.F:      !print *, 'maxval(WVNX1), maxval(WVNX2) > ', maxval(WVNX1), maxval(WVNX2)
+wind.F:     &                wvnx1,wvny1,prn1,wvnx2,wvny2,prn2
+wind.F:         call GET_GFDL(NP,WVNX2,WVNY2,PRN2,x,y,
