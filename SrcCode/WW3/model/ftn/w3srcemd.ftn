@@ -359,6 +359,8 @@
                           DTMIN, FACTI1, FACTI2, FACSD, FACHFA, FACP, &
                           XFC, XFLT, XREL, XFT, FXFM, FXPM, DDEN,     &
                           FTE, FTF, FHMAX, ECOS, ESIN, IICEDISP,      &
+!/FLD1                    WIND_FAC ,  &
+!/FLD2                    WIND_FAC,  &
                           ICESCALES, IICESMOOTH
       USE W3GDATMD, ONLY: FSSOURCE, optionCall
       USE W3GDATMD, ONLY: B_JGS_NLEVEL, B_JGS_SOURCE_NONLINEAR
@@ -1472,8 +1474,8 @@
 !/FLD2      CALL CALC_FPI(SPEC, CG1, FPI, VSIN )
 !
 !/FLD1      IF (U10ABS.GT.10. .and. HSTOT.gt.0.5) then
-!/FLD1          CALL W3FLD1 ( SPEC,min(FPI/TPI,2.0),COEF*U10ABS*COS(U10DIR),        &
-!/FLD1                    COEF*U10ABS*Sin(U10DIR), ZWND, DEPTH, 0.0, &
+!/FLD1          CALL W3FLD1 ( SPEC,min(FPI/TPI,2.0),COEF*U10ABS*COS(U10DIR)/WIND_FAC,        &
+!/FLD1                    COEF*U10ABS*Sin(U10DIR)/WIND_FAC, ZWND, DEPTH, 0.0, &
 !/FLD1                    USTAR, USTDIR, Z0,TAUNUX,TAUNUY,CHARN, FLD_QC)
 !/FLD1          USTAR=USTAR/COEF
 !/FLD1      ELSE 
@@ -1481,8 +1483,8 @@
 !/FLD1          FLD_QC=999
 !/FLD1      ENDIF
 !/FLD2      IF (U10ABS.GT.10. .and. HSTOT.gt.0.5) then
-!/FLD2          CALL W3FLD2 ( SPEC,min(FPI/TPI,2.0),COEF*U10ABS*COS(U10DIR),        &
-!/FLD2                    COEF*U10ABS*Sin(U10DIR), ZWND, DEPTH, 0.0, &
+!/FLD2          CALL W3FLD2 ( SPEC,min(FPI/TPI,2.0),COEF*U10ABS*COS(U10DIR)/WIND_FAC,        &
+!/FLD2                    COEF*U10ABS*Sin(U10DIR)/WIND_FAC, ZWND, DEPTH, 0.0, &
 !/FLD2                    USTAR, USTDIR, Z0,TAUNUX,TAUNUY,CHARN, FLD_QC)
 !/FLD2          USTAR=USTAR/COEF
 !/FLD2      ELSE 

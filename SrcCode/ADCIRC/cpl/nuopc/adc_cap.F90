@@ -1315,10 +1315,6 @@ module adc_cap
           WVNY2 = 1e-10
           WVNX1 = 1e-10
           WVNY1 = 1e-10
-          WVNSX2 = 1e-10
-          WVNSY2 = 1e-10
-          WVNSX1 = 1e-10
-          WVNSY1 = 1e-10
 
           PRN2 = 10.0  !hard coded to handel the 1st exchange zeros problem :TODO! Need to resolve this!
           PRN1 = PRN2

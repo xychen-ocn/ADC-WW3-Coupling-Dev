@@ -1425,7 +1425,9 @@
 !/PDLIB                   TAUWIY(JSEA), TAUWNX(JSEA),                    &
 !/PDLIB                   TAUWNY(JSEA),  PHIAW(JSEA), CHARN(JSEA),       &
 !/PDLIB                   TWS(JSEA), PHIOC(JSEA), TMP1, D50, PSIC, TMP2, &
-!/PDLIB                   PHIBBL(JSEA), TMP3, TMP4, PHICE(JSEA),         &
+!/PDLIB                   PHIBBL(JSEA), TMP3, TMP4, &
+!/PDLIB                   QCFLG(ISEA),         &
+!/PDLIB                   PHICE(JSEA),         &
 !/PDLIB                   ASF(ISEA))
 !/PDLIB!/DEBUGSRC      WRITE(740+IAPROC,*) 'After sum(VA)=', sum(VA(:,JSEA))
 !/PDLIB!/DEBUGSRC      WRITE(740+IAPROC,*) '   sum(VSTOT)=', sum(VSTOT(:,JSEA))
@@ -2015,7 +2017,9 @@
 !/PDLIB                      TAUWIY(JSEA), TAUWNX(JSEA),                 &
 !/PDLIB                      TAUWNY(JSEA),  PHIAW(JSEA), CHARN(JSEA),    &
 !/PDLIB                      TWS(JSEA),PHIOC(JSEA), TMP1, D50, PSIC, TMP2,&
-!/PDLIB                      PHIBBL(JSEA), TMP3, TMP4, PHICE(JSEA),      &
+!/PDLIB                      PHIBBL(JSEA), TMP3, TMP4, & 
+!/PDLIB                      QCFLG(ISEA), &
+!/PDLIB                      PHICE(JSEA),      &
 !/PDLIB                       ASF(ISEA))
 !/PDLIB              ELSE
                        CALL W3SRCE(srce_direct, IT, JSEA, IX, IY, IMOD, &
@@ -2035,10 +2039,10 @@
                             TAUWIY(JSEA), TAUWNX(JSEA),                 &
                             TAUWNY(JSEA),  PHIAW(JSEA), CHARN(JSEA),    &
                             TWS(JSEA), PHIOC(JSEA), TMP1, D50, PSIC,TMP2,&
-                            PHIBBL(JSEA), TMP3, TMP4 , PHICE(JSEA),     &
-!/FLD1                    QCFLG(ISEA),    &
-!/FLD2                    QCFLG(ISEA),    &
-                            ASF(ISEA))
+                            PHIBBL(JSEA), TMP3, TMP4 ,                &
+!/FLD1                      QCFLG(ISEA),    &
+!/FLD2                      QCFLG(ISEA),    &
+                            PHICE(JSEA), ASF(ISEA))
 !/PDLIB              END IF
                      WHITECAP(JSEA,1:4) = TMP1
                      BEDFORMS(JSEA,1:3) = TMP2

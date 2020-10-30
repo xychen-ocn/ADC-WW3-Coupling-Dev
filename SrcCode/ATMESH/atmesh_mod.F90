@@ -38,6 +38,16 @@ module atmesh_mod
     integer           , allocatable     :: TRI(:,:)
     integer           , allocatable     :: TRID(:,:)
     real(ESMF_KIND_R8), allocatable     :: UWND (:,:), VWND(:,:), PRES (:,:)
+
+    ! info for reading structured atmesh netcdf file:
+    type strucgrd
+!       real(ESMF_KIND_R8), allocatable     :: LONS(:,:), LATS(:,:), TIMES(:)
+       real(ESMF_KIND_R8), allocatable     :: UWND(:,:,:), VWND(:,:,:), PRES(:,:,:)
+       integer               :: LAT_dimid, LON_dimid       !for structured grid (XYC)
+    end type strucgrd
+    type(strucgrd) :: atm_strucgrd
+    integer               :: nlon, nlat   ! for structured grid (XYC)
+
     !netcdf vars
     integer :: ncid, NOD_dimid, rec_dimid, ELM_dimid, NOE_dimid
     integer :: LON_varid, LAT_varid, rec_varid, tri_varid
@@ -100,6 +110,16 @@ module atmesh_mod
       integer(ESMF_KIND_I4), allocatable :: owned_to_present_nodes(:)
     end type meshdata
 
+      !! XYC added type griddata for structured grid:
+    type griddata
+      type(ESMF_VM)                      :: vm
+      integer :: maxIndex(2)
+      type(ESMF_GridConn_Flag) :: connflagDim1(2)
+      type(ESMF_GridConn_Flag) :: connflagDim2(2)
+      type(ESMF_CoordSys_Flag) :: coordSys 
+    end type griddata
+
+
   !-----------------------------------------------------------------------------
   contains
 
@@ -118,6 +138,10 @@ module atmesh_mod
       character (len = *), parameter :: VWND_NAME   = "vwnd"
       character (len = *), parameter :: PRES_NAME   = "P"
       character (len = *), parameter :: TRI_NAME    = "tri"
+      ! for structured grid:
+      character (len = *), parameter :: XDIM_NAME    = "lon"
+      character (len = *), parameter :: YDIM_NAME    = "lat"
+     
 
       character (len = 140)          :: units
       character(len=*),parameter :: subname='(atmesh_mod:init_atmesh_nc)'
@@ -129,10 +153,12 @@ module atmesh_mod
 
       FILE_NAME =  TRIM(atm_dir)//'/'//TRIM(atm_nam)
       print *, ' FILE_NAME  > ', FILE_NAME
+      print *, ' atm_grd > ', TRIM(atm_grd)
       INQUIRE( FILE= FILE_NAME, EXIST=THERE )
       if ( .not. THERE)  stop 'ATMESH netcdf grdfile does not exist!'
 
       ncid = 0
+      IF (TRIM(atm_grd) == 'unstructured') THEN
       ! Open the file.
       call check(  nf90_open(trim(FILE_NAME), NF90_NOWRITE, ncid))
 
@@ -186,6 +212,57 @@ module atmesh_mod
       !    print *,  "TRI", TRI(1,num), TRI(2,num), TRI(3,num)
       !end do
       
+      ELSEIF (TRIM(atm_grd) == 'structured') THEN
+        ! XYC add code block to read in information from a structured wind input
+        ! Open the file.
+        call check(  nf90_open(trim(FILE_NAME), NF90_NOWRITE, ncid))
+
+      ! Get ID of unlimited dimension
+        call check( nf90_inquire(ncid, unlimitedDimId = rec_dimid) )
+
+      ! Get ID of limited dimension
+      !call check( nf90_inq_dimid(ncid, REC_NAME, rec_dimid) )
+      call check( nf90_inq_dimid(ncid, XDIM_NAME, atm_strucgrd%LON_dimid) )
+      call check( nf90_inq_dimid(ncid, YDIM_NAME, atm_strucgrd%LAT_dimid) )
+
+      ! How many values of "nodes" are there?
+      call check(nf90_inquire_dimension(ncid, atm_strucgrd%LON_dimid,  & 
+                len = nlon) )
+      call check(nf90_inquire_dimension(ncid, atm_strucgrd%LAT_dimid, & 
+                len = nlat) )
+      ! What is the name of the unlimited dimension, how many records are there?
+      call check(nf90_inquire_dimension(ncid, rec_dimid, len = ntime))
+
+      print *,  ' nlon  > ',nlon , ' nlat  > ' ,nlat,  ' ntime > ',ntime
+
+      ! Get the varids of the pressure and temperature netCDF variables.
+      call check( nf90_inq_varid(ncid, LAT_NAME,     LAT_varid) )
+      call check( nf90_inq_varid(ncid, LON_NAME,     LON_varid) )
+      call check( nf90_inq_varid(ncid, REC_NAME,     rec_varid) )
+      call check( nf90_inq_varid(ncid, UWND_NAME,    UWND_varid) )
+      call check( nf90_inq_varid(ncid, VWND_NAME,    VWND_varid) )
+      call check( nf90_inq_varid(ncid, PRES_NAME,    PRES_varid) )
+
+      !allocate vars
+      if(.not. allocated(LATS)) then
+         allocate (LATS(1:nlat))
+      endif
+      if(.not. allocated(LONS)) then
+          allocate (LONS(1:nlon))
+      endif
+      if(.not. allocated(TIMES)) allocate (TIMES (1:ntime))
+      ! read vars
+      call check(nf90_get_var(ncid, LAT_varid, LATS ))
+      call check(nf90_get_var(ncid, LON_varid, LONS ))
+      call check(nf90_get_var(ncid, rec_varid, TIMES))
+      !call check(nf90_get_var(ncid, UWND_varid, UWND  ))
+      !TODO: Why the order is other way???? Might change the whole forcing fields!!!!<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< IMPORTANT <<<<<
+      ! plot input and out put to be sure we are not scrambling the data. the same for HWRF netcdf file
+      !print *, '-- debugging: get TRI -- '
+      ! XYC: TRI 's data type created type conversion problem on RENCI-HATTERAS
+      !call check(nf90_get_var(ncid, TRI_varid, TRI, start = (/1,1/),count = (/noel,nelem/)  ))
+      
+      ENDIF
       write(info,*) subname,' --- init atmesh netcdf file  --- '
       !print *, info
       call ESMF_LogWrite(info, ESMF_LOGMSG_INFO, rc=rc)
@@ -206,6 +283,7 @@ module atmesh_mod
       character(len=*),parameter :: subname='(atmesh_mod:read_atmesh_nc)'
       integer, parameter :: NDIMS = 2
       integer    :: start(NDIMS),count(NDIMS)
+      integer    :: start3D(NDIMS+1),count3D(NDIMS+1)
       logical    :: THERE
       real       :: delta_d_all (ntime) , delta_d_ref
       !integer   :: dimids(NDIMS)
@@ -272,22 +350,44 @@ module atmesh_mod
       !write(info,*) ' Read ATMesh netcdf:',it, 
       !call ESMF_LogWrite(info, ESMF_LOGMSG_INFO, rc=rc)
 
+      IF ( TRIM(atm_grd) == 'unstructured' ) THEN
+        !alocate vars
+        if(.not. allocated(UWND))   allocate (UWND (1:nnode,1))
+        if(.not. allocated(VWND))   allocate (VWND (1:nnode,1))
+        if(.not. allocated(PRES))   allocate (PRES (1:nnode,1))
 
-      !alocate vars
-      if(.not. allocated(UWND))   allocate (UWND (1:nnode,1))
-      if(.not. allocated(VWND))   allocate (VWND (1:nnode,1))
-      if(.not. allocated(PRES))   allocate (PRES (1:nnode,1))
+        start = (/ 1   , it/)
+        count = (/nnode, 1 /)  !for some reason the order here is otherway around?!
 
-      start = (/ 1   , it/)
-      count = (/nnode, 1 /)  !for some reason the order here is otherway around?!
-
-      print *, start+count
-      !print *,size(UWND(ntime,:))
-      call check( nf90_get_var(ncid,UWND_varid, UWND, start, count) )
-      call check( nf90_get_var(ncid,VWND_varid, VWND, start, count) )
-      call check( nf90_get_var(ncid,PRES_varid, PRES, start, count) )
+        print *, start+count
+        !print *,size(UWND(ntime,:))
+        call check( nf90_get_var(ncid,UWND_varid, UWND, start, count) )
+        call check( nf90_get_var(ncid,VWND_varid, VWND, start, count) )
+        call check( nf90_get_var(ncid,PRES_varid, PRES, start, count) )
 
       !print *,FILE_NAME , '   HARD CODED for NOWWWW>>>>>     Time index from atmesh file is > ', it, UWND(1:10,1)
+      ELSEIF ( TRIM(atm_grd) == 'structured' ) THEN
+        !alocate vars
+        if(.not. allocated(atm_strucgrd%UWND)) then
+            allocate (atm_strucgrd%UWND (1:nlon,1:nlat,1))
+        endif
+        if(.not. allocated(atm_strucgrd%VWND)) then
+            allocate (atm_strucgrd%VWND (1:nlon,1:nlat,1))
+        endif
+        if(.not. allocated(atm_strucgrd%PRES)) then
+            allocate (atm_strucgrd%PRES (1:nlon,1:nlat,1))
+        endif
+
+        start3D = (/ 1  , 1   , it/)
+        count3D = (/nlon, nlat, 1 /)  !for some reason the order here is otherway around?!
+
+        print *, start3D+count3D
+        !print *,size(UWND(ntime,:))
+        call check( nf90_get_var(ncid,UWND_varid, atm_strucgrd%UWND, start3D, count3D) )
+        call check( nf90_get_var(ncid,VWND_varid, atm_strucgrd%VWND, start3D, count3D) )
+        call check( nf90_get_var(ncid,PRES_varid, atm_strucgrd%PRES, start3D, count3D) )
+
+      ENDIF    ! end reading info. from unstructured or structured grid
       write(info,*) subname,' --- read ATMesh netcdf file  --- '
       !print *, info
       call ESMF_LogWrite(info, ESMF_LOGMSG_INFO, rc=rc)
@@ -334,6 +434,81 @@ module atmesh_mod
       close(14)
     end subroutine
 
+!-----------------------------------------------------!
+!   XYC added: to do 
+    subroutine construct_griddata_from_netcdf(the_data)
+    implicit none
+      type(griddata), intent(inout)         :: the_data
+
+      the_data%maxIndex=(/nlon, nlat/)
+      the_data%connflagDim1(1)=ESMF_GRIDCONN_NONE
+      the_data%connflagDim1(2)=ESMF_GRIDCONN_NONE
+      the_data%connflagDim2(1)=ESMF_GRIDCONN_NONE
+      the_data%connflagDim2(2)=ESMF_GRIDCONN_NONE
+      the_data%coordSys=ESMF_COORDSYS_SPH_DEG    ! spherical grid in degrees
+
+    end subroutine
+
+
+    function CreateGrid_ModelGrid(rc)
+        type(ESMF_Grid) :: CreateGrid_ModelGrid
+        integer, intent(out), optional :: rc
+        character(len=*),parameter   :: subname='(hwrf_cap:CreateGrid_ModelGrid)'        
+
+        real(ESMF_KIND_R8), pointer :: coordX(:,:), coordY(:,:)
+        integer :: i, j
+
+        print *, '<0>',nlon,nlat
+        rc = ESMF_SUCCESS
+        CreateGrid_ModelGrid = ESMF_GridCreateNoPeriDim(name="ModelGrid", &
+            minIndex=(/1, 1/), &
+            maxIndex=(/nlon, nlat/), &
+            indexflag=ESMF_INDEX_GLOBAL, &
+            !minCornerCoord=(/1.0_ESMF_KIND_R8, 1.0_ESMF_KIND_R8/), &
+            !maxCornerCoord=(/100.0_ESMF_KIND_R8, 100.0_ESMF_KIND_R8/), &
+            rc=rc)
+
+        print *, '<1> HWRF LONS ', minval(LONS),maxval(LONS)
+
+        print *, '<1> HWRF LATS ', minval(LATS),maxval(LATS)
+        ! add coordinates
+        call ESMF_GridAddCoord(CreateGrid_ModelGrid, &
+            staggerloc=ESMF_STAGGERLOC_CENTER, rc=rc)
+        if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
+            line=__LINE__, &
+            file=__FILE__)) &
+            return  ! bail out
+        print *, '<2>'
+
+        call ESMF_GridGetCoord(CreateGrid_ModelGrid, coordDim=1, &
+            staggerloc=ESMF_STAGGERLOC_CENTER, &
+            farrayPtr=coordX, rc=rc)
+        if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
+            line=__LINE__, &
+            file=__FILE__)) &
+            return  ! bail out
+        print *, '<3>'
+
+        call ESMF_GridGetCoord(CreateGrid_ModelGrid, coordDim=2, &
+            staggerloc=ESMF_STAGGERLOC_CENTER, &
+            farrayPtr=coordY, rc=rc)
+        if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
+            line=__LINE__, &
+            file=__FILE__)) &
+            return  ! bail out
+        print *, '<4>'
+        ! set coordinates
+        do i=1,nlon
+            do j=1,nlat
+                coordX(i,j) = LONS(i)
+                coordY(i,j) = LATS(j)
+            enddo
+        enddo
+    write(info,*) subname,' --- hwrf SetServices completed --- '
+    print *,      subname,' --- hwrf SetServices completed --- '
+    call ESMF_LogWrite(info, ESMF_LOGMSG_INFO, rc=rc)
+       
+    end function
     !-----------------------------------------------------------------------
     !- Sub !!!????
     !-----------------------------------------------------------------------
@@ -422,6 +597,7 @@ module atmesh_mod
       type(meshdata), intent(in)                    :: the_data
       integer, parameter                            :: dim1=2, spacedim=2, NumND_per_El=3
       integer                                       :: rc
+      ! This function is 33.4.7 create a mesh all at once.
       out_esmf_mesh=ESMF_MeshCreate(parametricDim=dim1, spatialDim=spacedim, &
           nodeIDs=the_data%NdIDs, nodeCoords=the_data%NdCoords, &
           nodeOwners=the_data%NdOwners, elementIDs=the_data%ElIDs, &
@@ -432,6 +608,34 @@ module atmesh_mod
           line=__LINE__, &
           file=__FILE__)) &
           return  ! bail out
+
+    end subroutine
+
+   !> XYC added for structured grid:
+    subroutine create_parallel_esmf_grid_from_griddata(the_data, out_esmf_grid)
+      implicit none
+      type(ESMF_Grid), intent(out)                  :: out_esmf_grid
+      type(griddata), intent(in)                    :: the_data
+      integer                                       :: rc
+
+      ! THis fuction is 31.6.9. Create a Grid with user set edge connections and
+      ! a regular distribution
+      ! maxIndex specifies the dimension of grid: the upper extent of the grid
+      ! array; 
+      ! connflagDim1/2 = ESMF_GRIDCONN_NONE (default) without presence.
+      ! coordSys = ESMF_COORDSYS_SPH_DEG (default) if not specified.
+      ! But where did the coordinate information comes in??
+     ! =============== another method to create grid code below: =================!
+     ! out_esmf_grid=ESMF_GridCreate(maxIndex=the_data%maxIndex, connflagDim1=the_data%connflagDim1, &
+      !           connflagDim2=the_data%connflagDim2, coordSys=the_data%coordSys,  rc=rc)
+
+      ! call a function to put in the coordinate for this grid:
+      out_esmf_grid=CreateGrid_ModelGrid(rc=rc)
+      if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
+          line=__LINE__, &
+          file=__FILE__)) &
+          return  ! bail out
+
 
     end subroutine
     !-----------------------------------------------------------------------
@@ -475,6 +679,9 @@ module atmesh_mod
       call ESMF_ConfigGetAttribute(cf, atm_dir, label="atm_dir:",default='atm_inp/'  , rc=rc)
       call ESMF_ConfigGetAttribute(cf, atm_nam, label="atm_nam:", &
            default='atmesh.Constant.YYYYMMDD_sxy.nc'  , rc=rc)
+      ! XYC added to indicate mesh type:
+      call ESMF_ConfigGetAttribute(cf, atm_grd,label="atm_grd:", & 
+                                       default='unstructured',rc=rc)
       if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
         line=__LINE__, &
         file=__FILE__)) &

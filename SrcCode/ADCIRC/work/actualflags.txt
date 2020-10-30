@@ -5342,3 +5342,1299 @@ NETCDF4_COMPRESSION := enable
 XDMF := 
 ifort (IFORT) 18.0.0 20170811
 ----------------------------------
+----------------------------------
+Mon Oct 19 19:45:57 EDT 2020
+building libadc.a
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Mon Oct 19 19:47:34 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Mon Oct 19 19:59:25 EDT 2020
+building libadc.a
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Mon Oct 19 20:01:01 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Mon Oct 19 20:08:34 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Mon Oct 19 20:19:11 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Mon Oct 19 20:31:17 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Mon Oct 19 20:41:21 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Tue Oct 20 11:57:17 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Tue Oct 20 12:00:16 EDT 2020
+building libadc.a
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Tue Oct 20 12:01:58 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Tue Oct 20 12:24:28 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Tue Oct 20 15:28:25 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Tue Oct 20 15:31:32 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Tue Oct 20 22:27:11 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Tue Oct 20 22:29:13 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Tue Oct 20 22:31:50 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Fri Oct 23 18:51:28 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Mon Oct 26 21:42:59 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Mon Oct 26 21:45:13 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Mon Oct 26 21:51:42 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Mon Oct 26 21:53:16 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Mon Oct 26 22:33:50 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Mon Oct 26 22:34:28 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Mon Oct 26 22:36:34 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Mon Oct 26 22:37:24 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Mon Oct 26 22:40:53 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Tue Oct 27 11:45:17 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Tue Oct 27 11:58:08 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Tue Oct 27 16:36:02 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Tue Oct 27 16:37:16 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Wed Oct 28 10:35:45 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Wed Oct 28 10:36:16 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Wed Oct 28 12:06:17 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Fri Oct 30 09:49:04 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Fri Oct 30 12:41:28 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Fri Oct 30 13:00:37 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Fri Oct 30 13:12:13 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Fri Oct 30 13:21:42 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Fri Oct 30 13:46:42 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Fri Oct 30 13:55:33 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Fri Oct 30 13:57:19 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Fri Oct 30 15:08:26 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Fri Oct 30 16:07:38 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Fri Oct 30 16:26:29 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Fri Oct 30 16:41:33 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Fri Oct 30 17:11:07 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
+----------------------------------
+Fri Oct 30 17:39:14 EDT 2020
+building adcprep
+PPFC := ifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FC := ifort
+PFC := mpifort -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS1 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS2 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+FFLAGS3 := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -g -traceback -check all -debug all -w -O0 -FI -assume byterecl -132 -i-dynamic -assume buffered_io -DADCNETCDF -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include  -DHAVE_NETCDF4  -DNETCDF_CAN_DEFLATE 
+DA := -DREAL8 -DLINUX -DCSCA
+DP := -DREAL8 -DLINUX -DCSCA -DCMPI
+DPRE := -DREAL8 -DLINUX
+IMODS := -I
+CC := icc
+CCBE := icc
+CFLAGS := -I . -I /home/xychen/ADC-WW3-Coupling-Dev/SrcCode/ADCIRC/prep -I/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/include/   -I/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/include/    -O3 -m64 -mcmodel=medium -DLINUX
+CLIBS := 
+LIBS := -Lodir_metis -lmetis -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib -lnetcdff -lnetcdf -L/usr/share/Modules/software/CentOS-7/hdf5/1.10.1_intel-18.0.0/lib -L/usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0/lib  -lhdf5_fortran -lhdf5_hl -lhdf5  -lnetcdff -lnetcdf
+MSGLIBS := 
+compiler := intel
+MACHINENAME := 
+NETCDF := /usr/share/Modules/software/CentOS-7/netcdf-Fortran/4.4.0_intel-18.0.0
+NETCDF4 := 
+NETCDF4_COMPRESSION := enable
+XDMF := 
+ifort (IFORT) 18.0.0 20170811
+----------------------------------
