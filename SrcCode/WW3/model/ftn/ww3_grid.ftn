@@ -5761,7 +5761,7 @@
                ', REFICEBERG =',F5.2,', REFCOSP_STRAIGHT =',F4.1,' /')
 !
  2987 FORMAT ( '  &FLD TAIL_ID =',I1,' TAIL_LEV =',F5.4,' TAILT1 =',F5.3,&
-               ' TAILT2 =',F5.3,' /')
+               ' TAILT2 =',F5.3, ' WIND_FAC=', F5.3, '/')
 
  3000 FORMAT (/'  The spatial grid: '/                                &
                ' --------------------------------------------------'/ &

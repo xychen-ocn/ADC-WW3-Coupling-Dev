@@ -1426,7 +1426,7 @@
 !/PDLIB                   TAUWNY(JSEA),  PHIAW(JSEA), CHARN(JSEA),       &
 !/PDLIB                   TWS(JSEA), PHIOC(JSEA), TMP1, D50, PSIC, TMP2, &
 !/PDLIB                   PHIBBL(JSEA), TMP3, TMP4, &
-!/PDLIB                   QCFLG(ISEA),         &
+!/PDLIB                   QCFLG(JSEA),USTFLD(JSEA), USTDIRFLD(JSEA),       &
 !/PDLIB                   PHICE(JSEA),         &
 !/PDLIB                   ASF(ISEA))
 !/PDLIB!/DEBUGSRC      WRITE(740+IAPROC,*) 'After sum(VA)=', sum(VA(:,JSEA))
@@ -1440,6 +1440,8 @@
               USTDIR(ISEA) = UNDEF
               DTDYN (JSEA) = UNDEF
               FCUT  (JSEA) = UNDEF
+              USTFLD(JSEA) = UNDEF
+              USTDIRFLD(JSEA)=UNDEF
             END IF
           END DO ! JSEA 
         END IF ! PDLIB 
@@ -2018,7 +2020,7 @@
 !/PDLIB                      TAUWNY(JSEA),  PHIAW(JSEA), CHARN(JSEA),    &
 !/PDLIB                      TWS(JSEA),PHIOC(JSEA), TMP1, D50, PSIC, TMP2,&
 !/PDLIB                      PHIBBL(JSEA), TMP3, TMP4, & 
-!/PDLIB                      QCFLG(ISEA), &
+!/PDLIB                      QCFLG(JSEA),USTFLD(JSEA), USTDIRFLD(JSEA), &
 !/PDLIB                      PHICE(JSEA),      &
 !/PDLIB                       ASF(ISEA))
 !/PDLIB              ELSE
@@ -2040,8 +2042,7 @@
                             TAUWNY(JSEA),  PHIAW(JSEA), CHARN(JSEA),    &
                             TWS(JSEA), PHIOC(JSEA), TMP1, D50, PSIC,TMP2,&
                             PHIBBL(JSEA), TMP3, TMP4 ,                &
-!/FLD1                      QCFLG(ISEA),    &
-!/FLD2                      QCFLG(ISEA),    &
+                            QCFLG(JSEA), USTFLD(JSEA),USTDIRFLD(JSEA),    &
                             PHICE(JSEA), ASF(ISEA))
 !/PDLIB              END IF
                      WHITECAP(JSEA,1:4) = TMP1
@@ -2053,6 +2054,8 @@
                     USTDIR(ISEA) = UNDEF
                     DTDYN (JSEA) = UNDEF
                     FCUT  (JSEA) = UNDEF
+                    USTFLD(JSEA) = UNDEF
+                    USTDIRFLD(JSEA) = UNDEF
 !                    VA(:,JSEA)  = 0.
                 END IF
 !/DEBUGRUN        WRITE(740+IAPROC,*) 'RET: min/max/sum(VA)=',minval(VA(:,JSEA)),maxval(VA(:,JSEA)),sum(VA(:,JSEA))

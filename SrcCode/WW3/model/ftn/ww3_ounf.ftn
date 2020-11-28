@@ -126,6 +126,7 @@
                           TAUWIY, PHIAW, PHIOC, TUSX, TUSY, PRMS, TPMS,&
                           USSX, USSY, MSSX, MSSY, MSSD, MSCX, MSCY,    &
                           MSCD, CHARN, TWS,                            &
+                          USTFLD, USTDIRFLD,                           &
                           TAUWNX, TAUWNY, BHD, T02, HSIG, CGE,         &
                           T01, BEDFORMS, WHITECAP, TAUBBL, PHIBBL,     &
                           CFLTHMAX, CFLXYMAX, CFLKMAX, TAUICE, PHICE,  &
@@ -2171,20 +2172,20 @@
               UNITS  = 'm s-1'
               !! Note - UST and USTDIR read in from .ww3 file are X-Y vectors
               DO ISEA=1, NSEA
-                UABS   = SQRT(UST(ISEA)**2+USTDIR(ISEA)**2)
+                UABS   = SQRT(USTFLD(ISEA)**2+USTDIRFLD(ISEA)**2)
                  IF (UABS.GE.10.) THEN
                   UST(ISEA)=UNDEF
                   USTDIR(ISEA)=UNDEF
                   END IF
                  END DO
 !/RTD              ! Rotate x,y vector back to standard pole
-!/RTD              IF ( FLAGUNR ) CALL W3XYRTN(NSEA, UST(1:NSEA), USTDIR(1:NSEA), AnglD)
+!/RTD              IF ( FLAGUNR ) CALL W3XYRTN(NSEA, USTFLD(1:NSEA), USTDIRFLD(1:NSEA), AnglD)
               IF( SMCGRD ) THEN
-!/SMC                CALL W3S2XY_SMC( UST(1:NSEA), XX )
-!/SMC                CALL W3S2XY_SMC( USTDIR(1:NSEA), XY )
+!/SMC                CALL W3S2XY_SMC( USTFLD(1:NSEA), XX )
+!/SMC                CALL W3S2XY_SMC( USTDIRFLD(1:NSEA), XY )
               ELSE
-                CALL W3S2XY (NSEA,NSEA,NX+1,NY, UST   (1:NSEA), MAPSF, XX )
-                CALL W3S2XY (NSEA,NSEA,NX+1,NY, USTDIR(1:NSEA), MAPSF, XY )
+                CALL W3S2XY (NSEA,NSEA,NX+1,NY, USTFLD   (1:NSEA), MAPSF, XX )
+                CALL W3S2XY (NSEA,NSEA,NX+1,NY, USTDIRFLD(1:NSEA), MAPSF, XY )
               ENDIF ! SMCGRD
               !! Commented out unnecessary statements below for time being
               !! UST,USTDIR are in north-east convention and X1,X2

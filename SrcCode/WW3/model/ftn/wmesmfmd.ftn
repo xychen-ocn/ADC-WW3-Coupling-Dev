@@ -22,6 +22,7 @@
 !/ Macro for enabling using W3OUTG to calculate export fields
 !/
 #define USE_W3OUTG_FOR_EXPORT___disabled
+!#define USE_W3OUTG_FOR_EXPORT___enabled
 !/
 !/ ------------------------------------------------------------------- /
 !/ Macros for enabling test output
@@ -36,6 +37,7 @@
 #define TEST_WMESMFMD_ROUGHL___disabled
 #define TEST_WMESMFMD_BOTCUR___disabled
 #define TEST_WMESMFMD_RADSTR2D___disabled
+#define TEST_WMESMFMD_FricVel___disabled
 #define TEST_WMESMFMD_STOKES3D___disabled
 !/
 !/ ------------------------------------------------------------------- /
@@ -1304,6 +1306,7 @@
       if ( (GTYPE.eq.RLGTYPE).or.(GTYPE.eq.CLGTYPE) ) then
          write(msg,'(a)') trim(cname)// &
            ': Creating export grid for Reg/Curvilinear Mode'
+         call ESMF_LogWrite(trim(msg), ESMF_LOGMSG_INFO)
          call CreateExpGrid( gcomp, rc=rc )
          if (ESMF_LogFoundError(rc, PASSTHRU)) return
       elseif (GTYPE.eq.UNGTYPE) then
@@ -1416,6 +1419,9 @@
       if (ESMF_LogFoundError(rc, PASSTHRU)) return
       if ( expFieldActive(i1) .and. &
            expFieldActive(i2) ) then
+        write(msg,'(a,a10,a10)') trim(cname)//': ', &
+          trim(expFieldName(i1)),trim(expFieldName(i2))
+        call ESMF_LogWrite(trim(msg), ESMF_LOGMSG_INFO)
         flogr2(5,1) = .true.  !frictional velocity UST
       endif
     
@@ -2777,7 +2783,7 @@
 ! -------------------------------------------------------------------- /
 ! Post
 !
-#if defined(TEST_WMESMFMD) || defined(TEST_WMESMFMD_CREATEIMPGRID)
+!#if defined(TEST_WMESMFMD) || defined(TEST_WMESMFMD_CREATEIMPGRID)
       write(msg,'(a,i6)')  '     impGridID: ',impGridID
       call ESMF_LogWrite(trim(cname)//': CreateImpGrid: '//trim(msg), ESMF_LOGMSG_INFO)
       write(msg,'(a,l6)')  'impGridIsLocal: ',impGridIsLocal
@@ -2866,7 +2872,7 @@
       if (ESMF_LogFoundError(rc, PASSTHRU)) return
       call ESMF_FieldDestroy( tmpField, rc=rc )
       if (ESMF_LogFoundError(rc, PASSTHRU)) return
-#endif
+!#endif
 !
       rc = ESMF_SUCCESS
       if (verbosity.gt.0) call ESMF_LogWrite(trim(cname)// &
@@ -3182,6 +3188,7 @@
 ! 4.a Set flag to indicate that this processor has local native grid storage
 !
       natGridIsLocal = iaproc .gt. 0 .and. iaproc .le. naproc
+      write(*,*) "debug: natGridIsLocal=", natGridIsLocal
 !
 ! 4.b Setup arbitrary sequence index list
 !
@@ -3741,7 +3748,8 @@
       deallocate(elemTypes)
       deallocate(elemConn)
 
-      call ESMF_LogWrite(trim(cname)//': In CreateImpMesh, created impMesh', &
+      call ESMF_LogWrite(trim(cname)// & 
+          ': In CreateImpMesh, created impMesh', &
           ESMF_LOGMSG_INFO)
 !
       rc = ESMF_SUCCESS
@@ -5934,7 +5942,8 @@
 !/PDLIB          sxxn(jsea) = sxx(jsea)
 !/PDLIB          sxyn(jsea) = sxy(jsea)
 !/PDLIB          syyn(jsea) = syy(jsea)
-!/PDLIB!        write(msg,*) trim(cname)//' sxxn', sxxn(jsea)
+!/PDLIB!        write(msg,*) trim(cname)//' sxxn', sxxn(isea)
+!/PDLIB!        write(msg,'(A15, I6)') trim(cname)//' isea', isea
 !/PDLIB!        call ESMF_LogWrite(trim(msg), ESMF_LOGMSG_INFO)
 !/PDLIB        enddo jsea_loop2
 !/PDLIB      endif
@@ -5957,7 +5966,7 @@
       if (ESMF_LogFoundError(rc, PASSTHRU)) return
 !/PDLIB      endif
 
-!#ifdef TEST_WMESMFMD_RADSTR2D
+#ifdef TEST_WMESMFMD_RADSTR2D
       call ESMF_FieldWrite( sxxField, "wmesmfmd_radstr2d_sxx.nc", &
         overwrite=.true., timeSlice=timeSlice, rc=rc )
       if (ESMF_LogFoundError(rc, PASSTHRU)) return
@@ -5968,7 +5977,7 @@
         overwrite=.true., timeSlice=timeSlice, rc=rc )
       if (ESMF_LogFoundError(rc, PASSTHRU)) return
       timeSlice = timeSlice + 1
-!#endif
+#endif
 !/
 !/ End of CalcRadstr2D ----------------------------------------------- /
 !/
@@ -6221,7 +6230,8 @@
 !/ ------------------------------------------------------------------- /
 #undef METHOD
 #define METHOD "CalcFricVel"
-      subroutine CalcFricVel ( ustxField, ustyField, rc )
+      subroutine CalcFricVel (ustxField, ustyField, rc )
+!      subroutine CalcFricVel (a, ustxField, ustyField, rc )
 !/
 !/                  +-----------------------------------+
 !/                  | WAVEWATCH III           NOAA/NCEP |
@@ -6295,7 +6305,7 @@
 !/ ------------------------------------------------------------------- /
 !/ Parameter list
 !/
-!      real             :: a(nth,nk,0:nseal)
+      real             :: a(nth,nk,0:nseal)
       type(ESMF_Field) :: ustxField
       type(ESMF_Field) :: ustyField
       integer          :: rc
@@ -6380,15 +6390,15 @@
           if ( dw(isea).le.zero ) cycle jsea_loop
 !#ifdef USE_W3OUTG_FOR_EXPORT
 !         for ssd wind stress:
-          ustxn(jsea)= UST(isea)*cos(USTDIR(isea))
-          ustyn(jsea)= UST(isea)*sin(USTDIR(isea))
+          ustxn(jsea)= USTFLD(isea)*cos(USTDIRFLD(isea))
+          ustyn(jsea)= USTFLD(isea)*sin(USTDIRFLD(isea))
 !           ustxn(jsea)=1.0
 !           ustyn(jsea)=1.0
           !use qcflag to further perform quality control of the
           !frictional velocity; 
-          if (QCFLG(isea).ne.1) then
-          ! use bulk frictional velocity for ADCIRC
-             call wnd2ustadcbulk(U10(isea), U10D(isea),ustxn(jsea), ustyn(jsea))
+          if (QCFLG(isea).ne.INT(1)) then
+           ! use bulk frictional velocity for ADCIRC
+             call wnd2ustadcbulk(U10(isea)/WIND_FAC, U10D(isea)/WIND_FAC,ustxn(jsea), ustyn(jsea))
           endif
 !#else
           ! can I call the fld subroutine to do the calculation?
@@ -6403,13 +6413,17 @@
 !/PDLIB!        write(msg,*) trim(cname)//' ustxn', ustxn(isea)
 !/PDLIB!        call ESMF_LogWrite(trim(msg), ESMF_LOGMSG_INFO)
 !/PDLIB!         for ssd wind stress:
-!/PDLIB          ustxn(isea)= UST(isea)*cos(USTDIR(isea))
-!/PDLIB          ustyn(isea)= UST(isea)*sin(USTDIR(isea))
+!/PDLIB          ustxn(jsea)= USTFLD(jsea)*cos(USTDIRFLD(jsea))
+!/PDLIB          ustyn(jsea)= USTFLD(jsea)*sin(USTDIRFLD(jsea))
+!/PDLIB 
 !/PDLIB          !use qcflag to further perform quality control of the
 !/PDLIB          !frictional velocity; 
-!/PDLIB          if (QCFLG(isea).ne.1) then
+!/PDLIB!        write(msg,'(A15,1x, F6.3)') trim(cname)//' WIND_FAC', WIND_FAC
+!/PDLIB!        call ESMF_LogWrite(trim(msg), ESMF_LOGMSG_INFO)
+!/PDLIB!          if ( (QCFLG(jsea) .ne. INT(1)) .or. (USTFLD(jsea).ge.999)) then
+!/PDLIB          if ( (QCFLG(jsea) .ne. INT(1)) ) then
 !/PDLIB          ! use bulk frictional velocity for ADCIRC
-!/PDLIB             call wnd2ustadcbulk(U10(isea), U10D(isea),ustxn(isea), ustyn(isea))
+!/PDLIB             call wnd2ustadcbulk(U10(isea)/WIND_FAC, U10D(isea)/WIND_FAC,ustxn(jsea), ustyn(jsea))
 !/PDLIB          endif
 !/PDLIB        enddo jsea_loop2
 !/PDLIB      endif
@@ -6430,7 +6444,7 @@
       if (ESMF_LogFoundError(rc, PASSTHRU)) return
 !/PDLIB      endif
 
-!#ifdef TEST_WMESMFMD_RADSTR2D
+#ifdef TEST_WMESMFMD_FricVel
       call ESMF_FieldWrite( ustxField, "wmesmfmd_fricvel_ustx.nc", &
         overwrite=.true., timeSlice=timeSlice, rc=rc )
       if (ESMF_LogFoundError(rc, PASSTHRU)) return
@@ -6438,10 +6452,9 @@
         overwrite=.true., timeSlice=timeSlice, rc=rc )
       if (ESMF_LogFoundError(rc, PASSTHRU)) return
       timeSlice = timeSlice + 1
-!#endif
+#endif
 !/      
         END SUBROUTINE CalcFricVel
-!/ End of CalcFricVel ----------------------------------------------- /
 
        subroutine wnd2ustadcbulk(u10, u10dir, ustx, usty)
          implicit none

@@ -59,8 +59,7 @@
                           TAUWY, TAUOX, TAUOY, TAUWIX, TAUWIY, TAUWNX,&
                           TAUWNY, PHIAW, CHARN, TWS, PHIOC, WHITECAP, &
                           D50, PSIC, BEDFORM , PHIBBL, TAUBBL, TAUICE,&
-!/FLD1                    FLD_QC,  &
-!/FLD2                    FLD_QC,  &
+                          FLD_QC,  FLD_USTAR, FLD_USTDIR,      &
                           PHICE, COEF) 
 !/
 !/                  +-----------------------------------+
@@ -454,6 +453,12 @@
                                  ICEF
       REAL, INTENT(OUT)       :: DTDYN, FCUT
       REAL, INTENT(IN)        :: COEF
+
+     REAL, INTENT(OUT)                 :: FLD_USTAR, FLD_USTDIR
+      INTEGER, INTENT(OUT)                 :: FLD_QC
+!/FLD2     REAL, INTENT(OUT)                 :: FLD_USTAR, FLD_USTDIR, &
+!/FLD2                                          FLD_Z0
+!/FLD2     INTEGER, INTENT(OUT)                 :: FLD_QC
 !/
 !/ ------------------------------------------------------------------- /
 !/ Local parameters
@@ -516,9 +521,7 @@
 !/IS2      DOUBLE PRECISION        :: SCATSPEC(NTH) 
       REAL                    :: FOUT(NK,NTH), SOUT(NK,NTH), DOUT(NK,NTH)
 !/FLD1     REAL, SAVE              :: TAUNUX, TAUNUY
-!/FLD1     INTEGER                 :: FLD_QC
 !/FLD2     REAL, SAVE              :: TAUNUX, TAUNUY
-!/FLD2     INTEGER                 :: FLD_QC
       LOGICAL, SAVE           :: FLTEST = .FALSE., FLAGNN = .TRUE.
       LOGICAL                 :: SHAVE
       LOGICAL                 :: LBREAK
@@ -1469,6 +1472,10 @@
 !/DEBUGSRC       WRITE(740+IAPROC,*) '4 : sum(SPEC)=', sum(SPEC)
 !/DEBUGSRC     END IF
 
+! prepareing :
+           FLD_USTAR=0.0
+           FLD_USTDIR=0.0
+           FLD_QC=999
 ! FLD1/2 requires the calculation of FPI: 
 !/FLD1      CALL CALC_FPI(SPEC, CG1, FPI, VSIN )
 !/FLD2      CALL CALC_FPI(SPEC, CG1, FPI, VSIN )
@@ -1476,8 +1483,8 @@
 !/FLD1      IF (U10ABS.GT.10. .and. HSTOT.gt.0.5) then
 !/FLD1          CALL W3FLD1 ( SPEC,min(FPI/TPI,2.0),COEF*U10ABS*COS(U10DIR)/WIND_FAC,        &
 !/FLD1                    COEF*U10ABS*Sin(U10DIR)/WIND_FAC, ZWND, DEPTH, 0.0, &
-!/FLD1                    USTAR, USTDIR, Z0,TAUNUX,TAUNUY,CHARN, FLD_QC)
-!/FLD1          USTAR=USTAR/COEF
+!/FLD1                    FLD_USTAR, FLD_USTDIR, Z0,TAUNUX,TAUNUY,CHARN, FLD_QC)
+!/FLD1          FLD_USTAR=FLD_USTAR/COEF
 !/FLD1      ELSE 
 !/FLD1          CHARN = AALPHA 
 !/FLD1          FLD_QC=999
@@ -1485,8 +1492,8 @@
 !/FLD2      IF (U10ABS.GT.10. .and. HSTOT.gt.0.5) then
 !/FLD2          CALL W3FLD2 ( SPEC,min(FPI/TPI,2.0),COEF*U10ABS*COS(U10DIR)/WIND_FAC,        &
 !/FLD2                    COEF*U10ABS*Sin(U10DIR)/WIND_FAC, ZWND, DEPTH, 0.0, &
-!/FLD2                    USTAR, USTDIR, Z0,TAUNUX,TAUNUY,CHARN, FLD_QC)
-!/FLD2          USTAR=USTAR/COEF
+!/FLD2                    FLD_USTAR, FLD_USTDIR, Z0,TAUNUX,TAUNUY,CHARN, FLD_QC)
+!/FLD2          FLD_USTAR=FLD_USTAR/COEF
 !/FLD2      ELSE 
 !/FLD2          CHARN = AALPHA 
 !/FLD2          FLD_QC=999

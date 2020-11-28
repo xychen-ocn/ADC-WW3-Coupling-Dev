@@ -125,8 +125,8 @@
 !/PDLIB  LOGICAL, POINTER  :: SHAVETOT(:)
 !!/PDLIB     REAL, POINTER     :: VAOLD(:,:)
         LOGICAL               :: DINIT, FL_ALL
-!/FLD1                INTEGER, POINTER              :: QCFLG(:) 
-!/FLD2                INTEGER, POINTER              :: QCFLG(:) 
+!!/FLD1                INTEGER, POINTER              :: QCFLG(:) 
+!!/FLD2                INTEGER, POINTER              :: QCFLG(:) 
       END TYPE WDATA
 !
 !/
@@ -142,8 +142,8 @@
       REAL, POINTER           :: VA(:,:), WLV(:), ICE(:), UST(:),     &
                                  USTDIR(:), ASF(:), FPIS(:), BERG(:), &
                                  ICEH(:), ICEF(:), ICEDMAX(:)
-!/FLD1                INTEGER, POINTER              :: QCFLG(:) 
-!/FLD2                INTEGER, POINTER              :: QCFLG(:) 
+!!/FLD1                INTEGER, POINTER              :: QCFLG(:) 
+!!/FLD2                INTEGER, POINTER              :: QCFLG(:) 
 !/SETUP        REAL, POINTER :: ZETA_SETUP(:), FX_zs(:), FY_zs(:)
 !/SETUP        REAL, POINTER :: SXX_zs(:), SXY_zs(:), SYY_zs(:)
 !/PDLIB      REAL, POINTER           :: VSTOT(:,:), VDTOT(:,:)
@@ -482,8 +482,8 @@
                  WDATAS(IMOD)%UST(0:NSEATM),                          &
                  WDATAS(IMOD)%USTDIR(0:NSEATM),                       &
                  WDATAS(IMOD)%ASF(NSEATM),                            &
-!/FLD1           WDATAS(IMOD)%QCFLG(NSEATM),                          &
-!/FLD2           WDATAS(IMOD)%QCFLG(NSEATM),                          &
+!!/FLD1           WDATAS(IMOD)%QCFLG(NSEATM),                          &
+!!/FLD2           WDATAS(IMOD)%QCFLG(NSEATM),                          &
                  WDATAS(IMOD)%FPIS(NSEATM), STAT=ISTAT                )
       CHECK_ALLOC_STATUS ( ISTAT )
 !/DEBUGINIT    WRITE(740+IAPROC,*) 'W3DIMW, step 10'
@@ -498,8 +498,8 @@
       WDATAS(IMOD)%ICEF  (:) = 1000.
       WDATAS(IMOD)%ICEDMAX(:) = 1000.
       WDATAS(IMOD)%DINIT     = .TRUE.
-!/FLD1      WDATAS(IMOD)%QCFLG (:) = 999
-!/FLD2      WDATAS(IMOD)%QCFLG (:) = 999
+!!/FLD1      WDATAS(IMOD)%QCFLG (:) = 999
+!!/FLD2      WDATAS(IMOD)%QCFLG (:) = 999
 !/DEBUGINIT    WRITE(740+IAPROC,*) 'W3DIMW, step 11'
 !/DEBUGINIT    FLUSH(740+IAPROC)
       CALL W3SETW ( IMOD, NDSE, NDST )
@@ -675,8 +675,8 @@
           USTDIR => WDATAS(IMOD)%USTDIR
           ASF    => WDATAS(IMOD)%ASF
           FPIS   => WDATAS(IMOD)%FPIS
-!/FLD1          QCFLG  => WDATAS(IMOD)%QCFLG
-!/FLD2          QCFLG  => WDATAS(IMOD)%QCFLG
+!!/FLD1          QCFLG  => WDATAS(IMOD)%QCFLG
+!!/FLD2          QCFLG  => WDATAS(IMOD)%QCFLG
         END IF
 !
       RETURN
