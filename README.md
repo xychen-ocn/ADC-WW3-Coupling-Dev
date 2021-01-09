@@ -12,7 +12,8 @@ In this folder, I plan to provide a prototype case where ADCIRC and WW3 is coupl
 
 ### Test Cases:
 Located here are some simple test cases I have run (or will run) to identify issues in the couple system.  
--------------------------
+
+
 #### 1. Check the 1dt coupling time lag between two model components 
    | Case Info |                                                          |
    |-----------|:--------------------------------------------------------:|
