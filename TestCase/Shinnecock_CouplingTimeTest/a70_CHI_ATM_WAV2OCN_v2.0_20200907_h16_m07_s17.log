@@ -1,0 +1,27 @@
+ > Spin-up Start Time:   2008-08-23T00:00:00
+ > Base run Start Time:  2008-09-04T12:00:00
+ > End Time:             2008-09-18T12:00:00
+ > Atm2Wav2OCN for 1 cases.
+  > wind_atm_fin_ch_time_vec.nc
+ > Prepare NEMS related input files ..
+   > Prepare atm_namelist.rc ..
+   > Prepare nems.configure ..
+   > Prepare config.rc ..
+  > Link ATM Inp ...
+ > Prepare adcirc inps ... (take couple of minutes)
+   > Prepare fort.15 ..
+   > Prepare Tidal factors ..
+ cd   /projects/ees/dhs-crc/xychen/NCEP-CPL-ADC-WW3/scratch/data/shinnecock.atm2wav2ocn.20200907/run ; /projects/ees/dhs-crc/xychen/NCEP-CPL-ADC-WW3/NSEM-workflow/exec/tidefac <  tide_inp.txt  >  tidefac.log
+ > AdcPrep ...  
+ cd /projects/ees/dhs-crc/xychen/NCEP-CPL-ADC-WW3/scratch/data/shinnecock.atm2wav2ocn.20200907/run ; /projects/ees/dhs-crc/xychen/NCEP-CPL-ADC-WW3/NSEM-workflow/exec/adcprep --np 11  --prepall  >> adcprep.log
+ > End of Preproc.x ...  
+ > Copy HotStart input file from >  /projects/ees/dhs-crc/xychen/NCEP-CPL-ADC-WW3/scratch/data/nwges/para/nsem.20200907/shinnecock
+ > Prepare ww3 inps ... (take couple of minutes)
+ > Processing WW3 grid and physics...
+ > Processing WW3 boundary conditions...
+................................................... 
+
+
+-----------------------------------
+FINISH  > Ready to submit ..
+-----------------------------------

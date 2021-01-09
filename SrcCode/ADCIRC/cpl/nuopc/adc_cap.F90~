@@ -187,14 +187,14 @@ module adc_cap
   USE GLOBAL,  ONLY: RSNX1, RSNY1        ! Import wave 2D forces from wave model
   USE GLOBAL,  ONLY: RSNX2, RSNY2        ! Import wave 2D forces from wave model
   ! XYC add wind stress component:
-  USE GLOBAL,  ONLY: WSX1, WSY1
-  USE GLOBAL,  ONLY: WSX2, WSY2
+  USE GLOBAL,  ONLY: WVNSX1, WVNSY1
+  USE GLOBAL,  ONLY: WVNSX2, WVNSY2
   ! XYC finished adding.
   USE GLOBAL,  ONLY: WVNX2, WVNY2, PRN2  ! Import wind and pressure variables
   USE GLOBAL,  ONLY: WVNX1, WVNY1, PRN1
   USE GLOBAL,  ONLY: WTIMINC             ! wind time interval  may be set in ATM.cap or ........  <<:TODO:
   USE GLOBAL,  ONLY: RSTIMINC            ! wave time interval
-  use GLOBAL,  ONLY: RhoWat0, NUOPC4MET, NUOPC4WAV, NWS, g
+  use GLOBAL,  ONLY: RhoWat0, NUOPC4MET, NUOPC4WAV, NWS, g, DUMY1
   use GLOBAL,  only: ITHS, NT, DTDP, ITIME
   use GLOBAL,  only: allMessage, setMessageSource, unsetMessageSource
 
@@ -1134,6 +1134,57 @@ module adc_cap
         !write(iunit_log, *) RSNX2, RSNY2
         !close(iunit_log)
 
+        ! -------------- XYC added SSD wind stresses following the wave radiation stress ---------
+        ! Allocate arrays for SSD wind stresses:
+        ! XYC add: wind forcing to here. 
+        !   <<<< Receive and unpack ssdwsx, ssdwsy (sea-state dependent wind stress
+        !   components)
+        
+        IF(.NOT.ALLOCATED(WVNSX1)) ALLOCATE(WVNSX1(1:NP))
+        IF(.NOT.ALLOCATED(WVNSY1)) ALLOCATE(WVNSY1(1:NP))
+        
+        IF(.NOT.ALLOCATED(WVNSX2)) ALLOCATE(WVNSX2(1:NP))
+        IF(.NOT.ALLOCATED(WVNSY2)) ALLOCATE(WVNSY2(1:NP))
+
+! XYC: changed the order of this line;
+! Note: with this order, WVNSX1 is taken from WVNSX2 from the previous coupling time step        
+!        WVNSX1 = WVNSX2
+!        WVNSY1 = WVNSY2
+
+        ! XYC added for sea-state-dependent wind stress:
+        do i1 = 1, mdataOut%NumOwnedNd, 1
+            WVNSX2(mdataOut%owned_to_present_nodes(i1)) = dataPtr_ssdwsx(i1)
+        end do
+
+        do i1 = 1, mdataOut%NumOwnedNd, 1
+            WVNSY2(mdataOut%owned_to_present_nodes(i1)) = dataPtr_ssdwsy(i1)
+        end do
+        !write(*,*) "[debug:nws18] max(WSX/Y2)=", maxval(WSX2), maxval(WVNSY2)
+        
+       ! Here, WVNSX1 (current time for ADCIRC) is set to the same as WVNSX2
+       ! (also at current time);
+        WVNSX1 = WVNSX2
+        WVNSY1 = WVNSY2
+
+        ! Ghost nodes update
+        call UPDATER( WVNSX1(:), WVNSY1(:),DUMY1, 2)
+        call UPDATER( WVNSX2(:), WVNSY2(:),DUMY1, 2)
+
+        where(abs(WVNSX2).le.10**(-5)) WVNSX2=0.0
+        where(abs(WVNSY2).le.10**(-5)) WVNSY2=0.0
+        where(PRN2.le.1) PRN2=maxval(PRN2)
+        WVNSX1 = WVNSX2
+        WVNSY1 = WVNSY2
+!        if (sum(WVNSX2) .eq. 0.0 ) then
+!          WVNSX2 = -1.0
+!        end if  
+!        if (sum(WVNSY2) .eq. 0.0 ) then
+!          WVNSY2 = -1.0
+!        end if  
+      
+       
+        ! XYC note: an extra block to constrain the magnitude of the wind stress
+        ! at first exchange may be needed as in the wind speed case.
         write(info,*) subname,' --- wave data exchange OK / wave feilds are all connected --- / Model advances '
         call ESMF_LogWrite(info, ESMF_LOGMSG_INFO, rc=dbrc)
         !print *, info
@@ -1236,9 +1287,6 @@ module adc_cap
 
         !print *, 'maxval(WVNX2)', maxval(WVNX2)
 
-        WVNX1 = WVNX2   
-        WVNY1 = WVNY2  
-        PRN1  = PRN2
 
         !call UPDATER( dataPtr_izwh10m(:), dataPtr_imwh10m(:), dataPtr_pmsl(:),3)
        
@@ -1260,21 +1308,37 @@ module adc_cap
           !end if
         end do
          
+        WVNX1 = WVNX2   
+        WVNY1 = WVNY2  
+        PRN1  = PRN2
+
         ! Ghost nodes update 
         call UPDATER( WVNX1(:), WVNY1(:), PRN1(:),3)
         call UPDATER( WVNX2(:), WVNY2(:), PRN2(:),3)
 
-        if (first_exchange .and. sum(PRN1) .le. 1.0) then
-          WVNX2 = 1e-10
-          WVNY2 = 1e-10
-          WVNX1 = 1e-10
-          WVNY1 = 1e-10
+        if (first_exchange .and. (sum(PRN1) .le. 1.0)) then
+         if (sum(abs(WVNX2))+sum(abs(WVNY2)) .le. 1.0) then
+          WVNX2 = -5.0
+          WVNY2 = -5.0
+          WVNX1 = -5.0
+          WVNY1 = -5.0
+         endif
 
           PRN2 = 10.0  !hard coded to handel the 1st exchange zeros problem :TODO! Need to resolve this!
           PRN1 = PRN2
           first_exchange = .false.
         end if  
     
+         ! XYC added to resolve problem with a smaller WW3 mesh         
+         ! ADCIRC mesh that is not covered by WW3 mesh has zeros values in the
+         ! following three mete. parms. The following lines remove the
+         ! articifial gradient due to a smaller WW3 mesh.
+        where(abs(WVNX2).le.10**(-5)) WVNX2=1e-10
+        where(abs(WVNY2).le.10**(-5)) WVNY2=1e-10
+        where(PRN2.le.1) PRN2=maxval(PRN2)
+        WVNX1 = WVNX2
+        WVNY1 = WVNY2
+        PRN1 = PRN2
         !if (sum(PRN1) .eq. 0.0 ) then
         !  PRN1 = 10000.0
         !end if  

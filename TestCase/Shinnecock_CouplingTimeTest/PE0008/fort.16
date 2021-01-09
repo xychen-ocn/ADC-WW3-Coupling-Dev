@@ -1,0 +1,736 @@
+
+ _______________________________________________________________________________
+
+ _______________________________________________________________________________
+
+
+                   PROGRAM ADCIRC   VERSION 53.dev
+
+     AN ADVANCED CIRCULATION MODEL FOR SHELVES, COASTAL SEAS AND ESTUARIES
+
+
+       -  DEVELOPED BY
+
+          R.A. LUETTICH, JR
+            UNIVERSITY OF NORTH CAROLINA AT CHAPEL HILL
+            INSTITUTE OF MARINE SCIENCES
+
+          J.J. WESTERINK 
+            DEPARTMENT OF CIVIL ENGINEERING AND GEOLOGICAL SCIENCES
+            UNIVERSITY OF NOTRE DAME
+
+
+       -  THE ADCIRC SOURCE CODE IS COPYRIGHTED BY
+
+          R.A. LUETTICH, JR. AND J.J. WESTERINK, 1994-2006
+
+       NO PART OF THIS CODE MAY BE REPRODUCED OR REDISTRIBUTED
+          WITHOUT THE WRITTEN PERMISSION OF THE AUTHORS
+
+
+
+ _______________________________________________________________________________
+
+
+ THE ADCIRC SOURCE CODE HAS BEEN CONFIGURED BY THE PREPROCESSOR AS FOLLOWS:
+
+       - CODE SETUP TO RUN WITH 8 byte REALS
+       - CODE OPTIMIZED FOR A SCALAR COMPUTER
+
+ _______________________________________________________________________________
+INFO: openFileForRead: Searching for file to open on unit 14...
+INFO: openFileForRead: The file './PE0008/fort.14' was found. The file will be opened.
+INFO: openFileForRead: The file './PE0008/fort.14' was opened successfully.
+INFO: read14FindDims: Mesh file comment line:  Shinacock Inlet Coarse Grid
+INFO: read14FindDims: Reading mesh file dimensions.
+INFO: read14FindDims: Finished reading mesh file dimensions.
+INFO: read14: Reading mesh file coordinates,  connectivity, and boundary data.
+INFO: read14: Finished reading mesh file coordinates, connectivity, and boundary data.
+INFO: openFileForRead: Searching for file to open on unit 15...
+INFO: openFileForRead: The file './PE0008/fort.15' was found. The file will be opened.
+INFO: openFileForRead: The file './PE0008/fort.15' was opened successfully.
+INFO: logNameListReadStatus: End-of-file when searching for TimeBatyhControl.
+ECHO: read_input: found_tbc_nml= F nddt=0 btiminc= 0.00000000E+00 bchgtiminc= 0.00000000E+00
+INFO: logNameListReadStatus: End-of-file when searching for subdomainModeling.
+ECHO: read_input:  subdomainOn= F
+INFO: logNameListReadStatus: End-of-file when searching for metControl.
+ECHO: read_input:  WindDragLimit=  3.500000000000000E-003  DragLawString=default    rhoAir=   1.15000000000000       invertedBarometerOnElevationBoundary= F
+INFO: read_input: The tvwControl namelist was not found.
+INFO: logNameListReadStatus: End-of-file when searching for waveCoupling.
+ECHO: read_input:  WaveWindMultiplier=   1.00000000000000
+INFO: logNameListReadStatus: End-of-file when searching for wetDryControl.
+ECHO: read_input: outputNodeCode= F
+ECHO: read_input: outputNOFF= F
+ECHO: read_input: noffActive= T
+INFO: logNameListReadStatus: End-of-file when searching for inundationOutputControl.
+ECHO: read_input: inundationOutput= F
+ECHO: read_input: inunThresh= 0.60000000E+00
+
+
+ RUN DESCRIPTION :  Shinnecock Inlet V20051108               ! UPTO 32 CHARACTER ALPHANUMERIC RUN D
+
+ RUN IDENTIFICATION :  ADCIRC V45.08                            ! UPTO 24 CHARACTER ALPANUMERIC RUN ID
+
+ _______________________________________________________________________________
+
+
+ GENERAL RUN INFORMATION
+
+     NFOVER =  1
+         IF NON-FATAL INPUT ERRORS ARE DETECTED, THEY WILL BE CORRECTED AND EXECUTION CONTINUED
+     NABOUT =  1
+         ABREVIATED OUTPUT WILL BE PROVIDED TO UNIT 16
+         UNIT 14, 21, 22 INPUT DATA WILL NOT BE ECHO PRINTED
+
+
+     NSCREEN =      1
+         SCREEN OUTPUT WILL NOT BE PROVIDED
+
+
+     ADCIRC will be hot started using information on UNIT 567.
+
+     ICS =  2
+         Governing equations are in Spherical coordinates
+         mapped using a CPP projection
+  
+     IM =            0
+  
+     ADCIRC is configured for a Barotropic 2DDI 
+ run using: New GWCE and Momentum Eq formulations
+  
+      The ADCIRC logical variables are set to:
+          C2DDI            =  T
+          C3D              =  F
+          C3DDSS           =  F
+          C3DVS            =  F
+          C2D_BTrans       =  F
+          C2D_PTrans       =  F
+          C3D_PTrans       =  F
+          CBaroclinic      =  F
+          CGWCE_Lump       =  F
+          CGWCE_LS_KGQ     =  T
+          CGWCE_LS_2PartQ  =  F
+          CGWCE_LS_2PartV  =  F
+          CGWCE_LS_2PartSQ =  F
+          CGWCE_LS_2PartSV =  F
+          CGWCE_Advec_NC   =  T
+          CGWCE_Advec_C1   =  F
+          CGWCE_Advec_C2   =  F
+          CME_Orig         =  F
+          CME_New_NC       =  T
+          CME_New_C1       =  F
+          CME_New_C2       =  F
+          CME_LS_IBPQ      =  F
+          CME_LS_IBPV      =  T
+          CME_LS_IBPSQ     =  F
+          CME_LS_IBPSV     =  F
+          CME_LS_2PartQ    =  F
+          CME_LS_2PartV    =  F
+          CME_AreaInt_Orig =  F
+          CME_AreaInt_Corr =  T
+          CTIP             =  F
+          CHARMV           =  F
+
+     NOLIBF =   2
+         THE MODEL WILL USE STANDARD QUADRATIC BOTTOM FRICTIONIN DEEP WATER 
+         AND A FRICTION FACTOR THAT INCREASES AS THE DEPTH DECREASES IN SHALLOW WATER
+
+     NOLIFA =   2
+         THE MODEL WILL USE FINITE AMPLITUDE TERMS AND WETTING AND DRYING
+
+     NOLICA =   1
+         THE MODEL WILL USE SPATIAL DERIVATIVE COMPONENTS OF THE ADVECTIVE TERMS
+
+     NOLICAT =   1
+         THE MODEL WILL USE TIME DERIVATIVE COMPONENTS 
+         OF THE ADVECTIVE TERMS IN THE GWCE
+
+     NWP =  0
+         A Nodal Attributes File (unit 13)
+         will not be used.
+
+     NCOR =  1
+         SPATIALLY VARYING CORIOLIS VALUES WILL BE COMPUTED FROM INPUT LATITUDES
+
+     NTIP =  1
+         TIDAL POTENTIAL FORCING IS USED IN THE COMPUTATION BASED ON INPUT LONGITUDES/LATITUDES
+
+     NRS =  5
+         WAVE RADIATION STRESS IS USED TO FORCE THE COMPUTATION
+         STRESSES ARE COMPUTED ON THE FLY BY NUOPC
+         .
+
+     NWS = 17
+         Meteo info IS USED TO FORCE THE COMPUTATION
+         PASSED ON THE FLY BY NUOPC
+         .
+
+     NCICE =  0
+         ICE CONCENTRATION FIELDS ARE NOT USED TO ADJUST WIND STRESS COMPUTATIONS
+
+     NDDT =  0
+         A TIME VARYING BATHYMETRY IS NOT USED DURING THE COMPUTATION
+
+     NRAMP =  0
+         NO RAMP FUNCTION IS USED IN THE COMPUTATION
+
+
+
+     GRAVITATIONAL CONSTANT G =   9.81000
+
+
+ _______________________________________________________________________________
+
+
+ TIME INTEGRATION INFORMATION
+
+
+  ADCIRC is configured for a 2DDI run 
+  without the predictor-corrector algorithm and
+  the ADCIRC logical variable is set to:  
+          CPRECOR           =  F
+     TIME STEP =    2.000000     SECONDS
+
+     STARTING TIME FOR SIMULATION =       0.000000 DAYS
+
+     Harmonic REFERENCE TIME =       0.000000 DAYS
+
+     WIND TIME INCREMENT (SEC) =     900.00
+
+     RADIATION STRESS TIME INCREMENT (SEC) =     900.00
+
+     TOTAL LENGTH OF NUMERICAL SIMULATION =     26.5000     DAYS
+
+     NUMBER OF TIME STEPS  = 1144800
+
+
+
+     TIME WEIGHTING FACTORS IN THE WAVE EQUATION :
+
+         AT TIME LEVEL K+1 :  0.35000
+         AT TIME LEVEL K   :  0.30000
+         AT TIME LEVEL K-1 :  0.35000
+
+
+
+     DRYING WILL OCCUR WHEN THE WATER DEPTH < H0
+     H0 =   0.050000
+     AND NODEREP > NODEWETMIN =     12 TIME STEPS
+     NODEREP = NUMBER OF TIME STEPS SINCE A NODE CHANGED STATE (EITHER WETTED OR DRIED)
+
+     WETTING WILL OCCUR WHEN THERE IS A FAVORABLE PRESSURE GRADIENT THAT
+     WOULD DRIVE A STEADY VELOCITY TOWARDS A DRY NODE
+     THAT IS GREATER THAN VELMIN =    0.02000
+     AND NODEREP > NODEDRYMIN =     12 TIME STEPS
+
+
+ _______________________________________________________________________________
+
+
+ GRID INFORMATION
+
+
+INFO: initializeMesh: THE NEIGHBOR TABLE IS BEING COMPUTED.
+INFO: initializeMesh: THE NEIGHBOR TABLE IS COMPLETED. THE MINIMUM NUMBER OF NEIGHBORS FOR ANY NODE = 3. 1+THE MAXIMUM NUMBER OF NEIGHBORS FOR ANY NODE = 8. THE PARAMETER MNEI CAN BE SET AS SMALL AS 8.
+
+ _______________________________________________________________________________
+
+
+ BOTTOM FRICTION INFORMATION
+
+
+     HYBRID FRICTION RELATIONSHIP PARAMTERS, CFMIN =  0.00250000  HBREAK =     1.00
+     FTHETA =    10.00  FGAMMA =     0.3333
+
+
+
+     GRID IDENTIFICATION :  Shinacock Inlet Coarse Grid                                                    
+
+     TOTAL NUMBER OF NODES =     321
+
+     TOTAL NUMBER OF ELEMENTS =     579
+
+     LONGITUDE ABOUT WHICH CPP PROJECTION IS CENTERED  SLAM0 =  -72.4300 DEGREES
+     LATITUDE  ABOUT WHICH CPP PROJECTION IS CENTERED  SFEA0 =   40.6600 DEGREES
+
+
+     NODAL COORDINATES AND BATHYMETRY INFORMATION IS AVAILABLE IN THE
+      UNIT 14 INPUT FILE
+
+     THE GLOBAL CONNECTIVITY TABLE INFORMATION IS AVAILABLE IN THE
+      UNIT 14 INPUT FILE
+     Constant lateral stress coefficient = 0.50000000E+01
+
+
+
+ _______________________________________________________________________________
+
+
+ CORIOLIS INFORMATION 
+
+
+
+     LATITUDES ARE USED TO COMPUTE VARIABLE CORIOLIS
+       AND ARE BASED ON INPUT NODAL COORDINATES
+
+
+ _______________________________________________________________________________
+
+
+ TIDAL POTENTIAL FORCING INFORMATION 
+
+
+
+ TIDAL POTENTIAL IS FORCED FOR     5 CONSTITUENT(S) 
+
+ AMPLITUDE    FREQUENCY         ETRF      NODAL FACTOR  EQU.ARG(DEG) CONSTITUENT
+
+  0.2423340  0.000140518903   0.6930000      1.0210000     98.846        M2  
+  0.0463980  0.000137879699   0.6930000      1.0210000    285.394        N2  
+  0.1128410  0.000145444104   0.6930000      1.0000000    360.000        S2  
+  0.1415650  0.000072921158   0.7360000      0.9470000     32.493        K1  
+  0.1005140  0.000067597744   0.6950000      0.9130000     70.357        O1  
+
+     LONGITUDES AND LATITUDES ARE USED TO COMPUTE THE TIDAL POTENTIAL FUNCTION
+       AND ARE BASED ON INPUT NODAL COORDINATES 
+
+
+ _______________________________________________________________________________
+
+
+ ELEVATION SPECIFIED BOUNDARY FORCING INFORMATION 
+
+
+
+     NUMBER OF PERIODIC, ELEVATION SPECIFIED CONSTITUENTS =    5
+
+       CONSTITUENT #    FREQUENCY    NODAL FACTOR   EQU.ARG (DEG)  CONSTITUENT
+
+             1        0.000140518903   1.0210000      98.846           M2  
+             2        0.000137879699   1.0210000     285.394           N2  
+             3        0.000145444104   1.0000000     360.000           S2  
+             4        0.000072921158   0.9470000      32.493           K1  
+             5        0.000067597744   0.9130000      70.357           O1  
+
+ _______________________________________________________________________________
+
+
+     ANGINN =    90.00 DEGREES
+     ALL FLOW BOUNDARY NODES WITH NORMAL FLOW AS AN ESSENTIAL B.C. AND 
+         INNER ANGLES LESS THAN ANGINN WILL HAVE BOTH NORMAL 
+         AND TANGENTIAL VELOCITY COMPONENTS ZEROED
+
+            16
+            15
+            14
+            13
+            12
+            11
+            10
+             9
+             8
+             7
+             6
+             5
+             4
+             3
+             2
+             1
+
+ _______________________________________________________________________________
+
+
+ FLOW BOUNDARY INFORMATION 
+
+
+
+     THE TOTAL NUMBER OF FLOW BOUNDARY SEGMENTS = 0
+
+     THE TOTAL NUMBER OF FLOW BOUNDARY NODES = 0
+
+
+
+
+     ELEVATION BOUNDARY TIDAL FORCING FOR CONSTITUENT NUMBER1 DESIGNATED :  M2  
+         VERIFICATION OF CONSTITUENT :  M2       
+
+              NODE           AMPL.         PHASE(DEG)
+
+                16           0.46383         345.512
+                15           0.46523         345.636
+                14           0.46677         345.749
+                13           0.46829         345.861
+                12           0.46987         345.965
+                11           0.47153         346.060
+                10           0.47324         346.147
+                 9           0.47504         346.220
+                 8           0.47689         346.281
+                 7           0.47874         346.336
+                 6           0.48060         346.382
+                 5           0.48253         346.406
+                 4           0.48443         346.427
+                 3           0.48563         346.454
+                 2           0.48662         346.480
+                 1           0.48771         346.498
+
+
+
+
+     ELEVATION BOUNDARY TIDAL FORCING FOR CONSTITUENT NUMBER2 DESIGNATED :  N2  
+         VERIFICATION OF CONSTITUENT :  N2       
+
+              NODE           AMPL.         PHASE(DEG)
+
+                16           0.11724         334.596
+                15           0.11738         334.502
+                14           0.11754         334.404
+                13           0.11770         334.307
+                12           0.11787         334.210
+                11           0.11806         334.112
+                10           0.11825         334.015
+                 9           0.11846         333.917
+                 8           0.11867         333.820
+                 7           0.11889         333.726
+                 6           0.11911         333.634
+                 5           0.11935         333.544
+                 4           0.11959         333.457
+                 3           0.11969         333.393
+                 2           0.11974         333.339
+                 1           0.11982         333.285
+
+
+
+
+     ELEVATION BOUNDARY TIDAL FORCING FOR CONSTITUENT NUMBER3 DESIGNATED :  S2  
+         VERIFICATION OF CONSTITUENT :  S2       
+
+              NODE           AMPL.         PHASE(DEG)
+
+                16           0.07249          17.500
+                15           0.07260          17.426
+                14           0.07272          17.346
+                13           0.07284          17.267
+                12           0.07297          17.186
+                11           0.07310          17.102
+                10           0.07324          17.016
+                 9           0.07339          16.925
+                 8           0.07354          16.834
+                 7           0.07369          16.743
+                 6           0.07385          16.652
+                 5           0.07401          16.559
+                 4           0.07417          16.468
+                 3           0.07424          16.401
+                 2           0.07426          16.344
+                 1           0.07431          16.286
+
+
+
+
+     ELEVATION BOUNDARY TIDAL FORCING FOR CONSTITUENT NUMBER4 DESIGNATED :  K1  
+         VERIFICATION OF CONSTITUENT :  K1       
+
+              NODE           AMPL.         PHASE(DEG)
+
+                16           0.06944         176.558
+                15           0.06978         176.315
+                14           0.07009         176.071
+                13           0.07041         175.832
+                12           0.07071         175.597
+                11           0.07100         175.365
+                10           0.07127         175.139
+                 9           0.07152         174.919
+                 8           0.07174         174.707
+                 7           0.07194         174.501
+                 6           0.07213         174.304
+                 5           0.07227         174.121
+                 4           0.07240         173.944
+                 3           0.07256         173.831
+                 2           0.07271         173.746
+                 1           0.07284         173.662
+
+
+
+
+     ELEVATION BOUNDARY TIDAL FORCING FOR CONSTITUENT NUMBER5 DESIGNATED :  O1  
+         VERIFICATION OF CONSTITUENT :  O1       
+
+              NODE           AMPL.         PHASE(DEG)
+
+                16           0.05717         185.891
+                15           0.05712         185.674
+                14           0.05707         185.466
+                13           0.05701         185.260
+                12           0.05696         185.062
+                11           0.05690         184.874
+                10           0.05684         184.696
+                 9           0.05678         184.536
+                 8           0.05671         184.389
+                 7           0.05664         184.252
+                 6           0.05657         184.127
+                 5           0.05650         184.033
+                 4           0.05642         183.943
+                 3           0.05641         183.856
+                 2           0.05641         183.777
+                 1           0.05641         183.711
+
+ _______________________________________________________________________________
+
+
+ OUTPUT INFORMATION WILL BE PROVIDED AS FOLLOWS :
+
+
+
+ ELEVATION RECORDING STATION OUTPUT : 
+
+     NOUTE = -5
+INFO: read_input: UNIT 61 WILL BE NETCDF CLASSIC MODEL / NETCDF4 (HDF5) FORMAT.
+
+     DATA RECORDS WILL START AFTER TOUTSE =   0.000 DAY(S) RELATIVE
+         TO THE STARTING TIME OR        0 TIME STEPS INTO THE SIMULATION
+
+     DATA RECORDS WILL STOP AFTER TOUTFE = 366.000 DAY(S) RELATIVE
+         TO THE STARTING TIME OR  1144800 TIME STEPS INTO THE SIMULATION
+
+     INFORMATION WILL BE SPOOLED TO UNIT 61 EVERY NSPOOLE =      30 TIME STEPS
+
+
+
+     NUMBER OF INPUT ELEVATION RECORDING STATIONS =     0
+
+
+
+
+ VELOCITY RECORDING STATION OUTPUT : 
+
+     NOUTV =  0
+INFO: read_input: NO OUTPUT WILL BE SPOOLED AT VELOCITY RECORDING STATIONS
+
+
+
+
+     NUMBER OF INPUT VELOCITY RECORDING STATIONS =     0
+
+
+
+ METEOROLOGICAL RECORDING STATION OUTPUT : 
+
+     NOUTM =  0
+INFO: read_input: NO OUTPUT WILL BE SPOOLED AT MET. RECORDING STATIONS
+
+
+
+     NUMBER OF INPUT METEOROLOGICAL RECORDING STATIONS =     0
+
+
+
+
+ GLOBAL NODAL ELEVATION INFORMATION OUTPUT: 
+
+     NOUTGE = -5
+INFO: read_input: UNIT 63 FORMAT WILL BE NETCDF CLASSIC MODEL / NETCDF4 (HDF5) FORMAT.
+
+     DATA RECORDS WILL START AFTER TOUTSGE =   0.000 DAY(S) RELATIVE
+         TO THE STARTING TIME OR        0 TIME STEPS INTO THE SIMULATION
+
+     DATA RECORDS WILL STOP AFTER TOUTFGE =1000.000 DAY(S) RELATIVE
+         TO THE STARTING TIME OR  1144800 TIME STEPS INTO THE SIMULATION
+
+     INFORMATION WILL BE SPOOLED TO UNIT 63 EVERY NSPOOLGE =     150 TIME STEPS
+
+
+
+
+ GLOBAL NODAL VELOCITY INFORMATION OUTPUT : 
+
+     NOUTGV = -5
+INFO: read_input: UNIT 64 FORMAT WILL BE NETCDF CLASSIC MODEL / NETCDF4 (HDF5) FORMAT.
+
+     DATA RECORDS WILL START AFTER TOUTSGV =   0.000 DAY(S) RELATIVE
+         TO THE STARTING TIME OR        0 TIME STEPS INTO THE SIMULATION
+
+     DATA RECORDS WILL STOP AFTER TOUTFGV =1000.000 DAY(S) RELATIVE
+         TO THE STARTING TIME OR  1144800 TIME STEPS INTO THE SIMULATION
+
+     INFORMATION WILL BE SPOOLED TO UNIT 64 EVERY NSPOOLGV =     150 TIME STEPS
+
+
+
+
+ GLOBAL WIND STRESS INFORMATION OUTPUT : 
+
+     NOUTGW = -5
+INFO: read_input: UNIT 73 AND 74 FORMATS WILL BE NETCDF CLASSIC MODEL / NETCDF4 (HDF5) FORMAT.
+
+     DATA RECORDS WILL START AFTER TOUTSGW =   0.000 DAY(S) RELATIVE
+         TO THE STARTING TIME OR        0 TIME STEPS INTO THE SIMULATION
+
+     DATA RECORDS WILL STOP AFTER TOUTFGW =1000.000 DAY(S) RELATIVE
+         TO THE STARTING TIME OR  1144800 TIME STEPS INTO THE SIMULATION
+
+     INFORMATION WILL BE SPOOLED TO UNIT 74 EVERY NSPOOLGW =     150 TIME STEPS
+
+
+
+
+ HARMONIC ANALYSIS INFORMATION OUTPUT : 
+
+     HARMONIC ANALYSIS PERFORMED FOR    0 CONSTITUENTS
+
+
+
+
+     NO HARMONIC ANALYSIS WILL BE DONE
+INFO: read_input: HOT START OUTPUT INFORMATION :
+INFO: read_input: HOT START OUTPUT WILL NOT BE GENERATED.
+
+     HOT START OUTPUT WILL BE WRITTEN TO UNIT 67 OR 68 EVERY    1144800 TIME STEPS
+
+
+ SOLVER INFORMATION OUTPUT : 
+
+     A SPATIALLY CONSTANT WEIGHTING COEFFICIENT (Tau0)
+      WILL BE USED IN THE GENERALIZED WAVE CONTINUITY EQUATION.
+     Tau0 =  0.50000000E-02  1/sec
+
+ *****************************************************
+ *   Based on information extracted from the ADCIRC  *
+ *   UNIT 14 and 15 (grid and horiz run info) files  *
+ *   the following paramter values will be set:      *
+ *                                                   *
+ *       MNPROC =    11      MWPROC =     0          *
+ *       MWPROH =     0                              *
+ *       MNE =      579      MNP  =      321         *
+ *       MNEI =       9                              *
+ *       MNOPE =      1      MNETA =     16          *
+ *       MNBOU =      0      MNVEL =      0          *
+ *       MNTIF =      5      MNBFR =      5          *
+ *       MNSTAE =     1      MNSTAV =     1          *
+ *       MNSTAC =     0      MNSTAM =     1          *
+ *       MNWLAT =     0      MNWLON =     0          *
+ *       MNHARF =     1      MNFFR =      0          *
+ *                                                   *
+ *   means and variance calculation will NOT be made,*
+ *   the GWCE matrix will be left in consistent form *
+ *   the model will be set up for a 2DDI run,        *
+ *   and an iterative solver will be used            *
+ *****************************************************
+
+INFO: read_input: Now reading metadata from fort.15 file for use in NetCDF files.
+INFO: readNetCDFHotstart: Opening hot start file "./fort.67.nc" for reading.
+
+ _______________________________________________________________________________
+
+
+ INFORMATION ABOUT RE-STARTING THE TIME SERIES OUTPUT FILES (UNITS 61-64,71-74,81,83),
+ WIND/PRESSURE FILE (UNIT 22) AND FLOW BOUNDARY CONDITION FILE (UNIT 20)
+
+
+
+
+      0 LINES OR RECORDS WRITTEN IN ELEVATION STATION FILE BY THE TIME OF THE HOT START
+        SPOOL COUNTER =     29
+
+
+ A NEW ELEVATION STATION FILE WILL BE STARTED
+
+
+      0 LINES OR RECORDS WRITTEN IN VELOCITY STATION FILE BY THE TIME OF THE HOT START
+        SPOOL COUNTER =     0
+
+
+      0 LINES OR RECORDS WRITTEN IN CONCENTRATION STATION FILE BY THE TIME OF THE HOT START
+        SPOOL COUNTER =      0
+
+
+      0 LINES OR RECORDS WRITTEN IN THE WIND STATION FILE BY THE TIME OF THE HOT START
+      0 LINES OR RECORDS WRITTIN IN THE PRES STATION FILE BY THE TIME OF THE HOT START
+        SPOOL COUNTER =      0
+
+
+      0 LINES OR RECORDS WRITTEN IN THE WIND STATION FILE BY THE TIME OF THE HOT START
+      0 LINES OR RECORDS WRITTIN IN THE PRES STATION FILE BY THE TIME OF THE HOT START
+        SPOOL COUNTER =      0
+
+
+        0 LINES OR RECORDS WRITTEN IN THE GLOBAL ELEVATION FILE BY THE TIME OF THE HOT START
+        SPOOL COUNTER =     179
+
+
+ A NEW GLOBAL ELEVATION FILE WILL BE STARTED
+
+
+      0 LINES OR RECORDS WRITTEN IN THE GLOBAL VELOCITY FILE BY THE TIME OF THE HOT START
+        SPOOL COUNTER =   179
+
+
+ A NEW GLOBAL VELOCITY FILE WILL BE STARTED
+
+
+      0 LINES OR RECORDS WRITTEN IN THE GLOBAL CONCENTRATION FILE BY THE TIME OF THE HOT START
+        SPOOL COUNTER =     0
+
+
+      0 LINES OR RECORDS WRITTEN IN THE GLOBAL WIND FILE BY THE TIME OF THE HOT START
+      0LINES OR RECORDS WRITTEN IN THE GLOBAL PRESSURE FILE BY THE TIME OF THE HOT START
+        SPOOL COUNTER =     0
+
+
+ NEW GLOBAL WIND & pressure FILEs WILL BE STARTED
+
+
+ NEW GLOBAL WIND & pressure FILEs WILL BE STARTED
+INFO: initOutput2D: Attempting to read ./maxele.63 to continue the min/max record.
+INFO: openFileForRead: Searching for file to open on unit 311...
+INFO: openFileForRead: The file './maxele.63' was not found.
+INFO: readAndMapToSubdomainMaxMin: Values from ./maxele.63 will not reflect the solution prior to this hotstart.
+INFO: readAndMapToSubdomainMaxMinNetCDF: Opening file "./maxele.63.nc" for reading.
+INFO: readAndMapToSubdomainMaxMinNetCDF: The file ./maxele.63.nccontains no data, so the min/max record will be started anew.
+INFO: initOutput2D: Attempting to read ./maxvel.63 to continue the min/max record.
+INFO: openFileForRead: Searching for file to open on unit 312...
+INFO: openFileForRead: The file './maxvel.63' was not found.
+INFO: readAndMapToSubdomainMaxMin: Values from ./maxvel.63 will not reflect the solution prior to this hotstart.
+INFO: readAndMapToSubdomainMaxMinNetCDF: Opening file "./maxvel.63.nc" for reading.
+INFO: readAndMapToSubdomainMaxMinNetCDF: The file ./maxvel.63.nccontains no data, so the min/max record will be started anew.
+INFO: initOutput2D: Attempting to read ./maxwvel.63 to continue the min/max record.
+INFO: openFileForRead: Searching for file to open on unit 314...
+INFO: openFileForRead: The file './maxwvel.63' was not found.
+INFO: readAndMapToSubdomainMaxMin: Values from ./maxwvel.63 will not reflect the solution prior to this hotstart.
+INFO: readAndMapToSubdomainMaxMinNetCDF: Opening file "./maxwvel.63.nc" for reading.
+INFO: readAndMapToSubdomainMaxMinNetCDF: The file ./maxwvel.63.nccontains no data, so the min/max record will be started anew.
+INFO: initOutput2D: Attempting to read ./minpr.63 to continue the min/max record.
+INFO: openFileForRead: Searching for file to open on unit 313...
+INFO: openFileForRead: The file './minpr.63' was not found.
+INFO: readAndMapToSubdomainMaxMin: Values from ./minpr.63 will not reflect the solution prior to this hotstart.
+INFO: readAndMapToSubdomainMaxMinNetCDF: Opening file "./minpr.63.nc" for reading.
+INFO: readAndMapToSubdomainMaxMinNetCDF: The file ./minpr.63.nccontains no data, so the min/max record will be started anew.
+INFO: initOutput2D: Attempting to read ./maxrs.63 to continue the min/max record.
+INFO: openFileForRead: Searching for file to open on unit 315...
+INFO: openFileForRead: The file './maxrs.63' was not found.
+INFO: readAndMapToSubdomainMaxMin: Values from ./maxrs.63 will not reflect the solution prior to this hotstart.
+INFO: readAndMapToSubdomainMaxMinNetCDF: Opening file "./maxrs.63.nc" for reading.
+INFO: readAndMapToSubdomainMaxMinNetCDF: The file ./maxrs.63.nccontains no data, so the min/max record will be started anew.
+
+ _______________________________________________________________________________
+
+
+ LIMITED RUNTIME INFORMATION SECTION 
+
+
+INFO: (adc_cap:ModelAdvance):  ADC currTime =         2008 /           9 /           4            12 :           0 :           0
+INFO: ADCIRC_Run: Begin timestepping.
+INFO: (adc_cap:ModelAdvance):  ADC currTime =         2008 /           9 /           4            12 :          30 :           0
+INFO: ADCIRC_Run: Begin timestepping.
+INFO: (adc_cap:ModelAdvance):  ADC currTime =         2008 /           9 /           4            13 :           0 :           0
+INFO: ADCIRC_Run: Begin timestepping.
+INFO: (adc_cap:ModelAdvance):  ADC currTime =         2008 /           9 /           4            13 :          30 :           0
+INFO: ADCIRC_Run: Begin timestepping.
+INFO: (adc_cap:ModelAdvance):  ADC currTime =         2008 /           9 /           4            14 :           0 :           0
+INFO: ADCIRC_Run: Begin timestepping.
+INFO: (adc_cap:ModelAdvance):  ADC currTime =         2008 /           9 /           4            14 :          30 :           0
+INFO: ADCIRC_Run: Begin timestepping.
+INFO: (adc_cap:ModelAdvance):  ADC currTime =         2008 /           9 /           4            15 :           0 :           0
+INFO: ADCIRC_Run: Begin timestepping.
+INFO: (adc_cap:ModelAdvance):  ADC currTime =         2008 /           9 /           4            15 :          30 :           0
+INFO: ADCIRC_Run: Begin timestepping.
+INFO: (adc_cap:ModelAdvance):  ADC currTime =         2008 /           9 /           4            16 :           0 :           0
+INFO: ADCIRC_Run: Begin timestepping.
