@@ -1,5 +1,4 @@
 # ADC-WW3-Coupling-Dev
-----------
 This repository stores the ADC-WW3-HBL-NEMS code in active developement. This work is a collaborative effort between URI/GSO and our NOAA partners. 
 The coupling between ADCIRC and WW3 is done by a flexible application based on the Earth System Modeling Framework (ESMF) with NUOPC layer This application is developed as part of the NOAA Coastal Act coupling project. 
 
