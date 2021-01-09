@@ -1,33 +1,31 @@
 # ADC-WW3-Coupling-Dev
-This repository stores code or analysis scripts for the ADC-WW3 project I am working on.
-The coupling between ADCIRC and WW3 is done with the Earth System Modeling Framework (ESMF) with NUOPC layer.
-The coupling is developed by NOAA COASTAL ACT group. (NEMS)
+This repository stores the ADC-WW3-HBL-NEMS code in active developement. This work is a collaborative effort between URI/GSO and our NOAA partners. 
+The coupling between ADCIRC and WW3 is done by a flexible application based on the Earth System Modeling Framework (ESMF) with NUOPC layer. This coupling application is developed as part of the NOAA Coastal Act coupling project. 
 
 ## Structure of this repository:
-### Source Codes 
-The source codes come from the a forked repository. (I am not sure if I can upload the source code to this repository.
+### Source Code 
+The source code comes from the [ADC-WW3-NWM-NEMS](https://github.com/noaa-ocs-modeling/ADC-WW3-NWM-NEMS) repository. 
 
 ### Benchmark Case
-In this folder, I will provide the setup for the ADCIRC model and the input field as in the storm surge paper that I have been working on.
+In this folder, I plan to provide a prototype case where ADCIRC and WW3 is coupled by the sea-state dependent wind stress in addition to the traditional wave radiation stress. (Not yet available..)
 
-The benchmark case comes from previous thesis work on the storm surge.
+
 ### Test Cases:
-provide a descriptions on each test case:
-Two types of testcases:
- 1. ww3data: a fictious wave model, where prescribed sea-state dependent wind stress is prescribed and provided for use (same as the wind stress used in the benchmark case). In this case, the mesh is unstructured grid and it is identical to the ADCIRC mesh;
- 
- 2. ww3: the real wave model, where sea-state dependent wind stress will be computed and passed to the ADCIRC model. In this case, the mesh for wind and wave model will be cartesian and conversion will happen using the ESMF conversion function. Another question is that can the WW3 model and the ADCIRC model have different mesh coverage?
- 
+Located here are some simple test cases I have run (or will run) to identify issues in the couple system.  
+#### 1. Check the 1dt coupling time lag between two model components 
+   | Case Info |                                                          |
+   |-----------|:--------------------------------------------------------:|
+   |  Mesh:    | Shinnecock                                               |
+   |  Wind:    | Uniform northeasterly onshore wind increases with time   |
+   |  RunType: | atm2wav2ocn                                              |
+   
+   All the export and import fields from each model component are stored in a folder named `output_dumped_by_caps`. 
+   Note that the assoicated [ATM cap](https://github.com/xychengso/ADC-WW3-Coupling-Dev/tree/main/SrcCode/ATMESH) and [ADCIRC cap](https://github.com/xychengso/ADC-WW3-Coupling-Dev/tree/main/SrcCode/ADCIRC/cpl/nuopc) are updated from the [source](https://github.com/noaa-ocs-modeling/ADC-WW3-NWM-NEMS) so the export variables are dumped correctly at current time (noted in the code as well). In the [WW3 cap](https://github.com/xychengso/ADC-WW3-Coupling-Dev/tree/main/SrcCode/WW3/model/ftn)(`wmesmfmd.ftn`), minor updated is done to change how the two wind data arrays hold wind information. Time stamp has been added to the wmesmf_import_xxxx_timestamp.nc file to indicate the output time associated with the last data record in the netCDF file.  
+   
+   
+   
 
-### Analysis scripts - matlab
-#### comparison between test case and benchmark case.
-NCCMP - a function to compare netCDF file is used to quickly compare the netCDF files bit-by-bit;
-PlotDif - a function to compare netCDF file by doing difference and plot it out. 
-Ideally, there should be no difference between scripts;
-
-#### visualization scripts
-visualize the wind forcing field and compare it what I used in the benchmark case;
-visualize the output field (surface elevation and velocity); 
+   
 
 
 
