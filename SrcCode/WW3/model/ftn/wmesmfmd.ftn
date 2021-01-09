@@ -27,8 +27,8 @@
 !/ ------------------------------------------------------------------- /
 !/ Macros for enabling test output
 !/
-#define TEST_WMESMFMD___disabled
-#define TEST_WMESMFMD_GETIMPORT___disabled
+#define TEST_WMESMFMD
+#define TEST_WMESMFMD_GETIMPORT
 #define TEST_WMESMFMD_SETEXPORT___disabled
 #define TEST_WMESMFMD_CREATEIMPGRID___disabled
 #define TEST_WMESMFMD_CREATEEXPGRID___disabled
@@ -1424,6 +1424,15 @@
         call ESMF_LogWrite(trim(msg), ESMF_LOGMSG_INFO)
         flogr2(5,1) = .true.  !frictional velocity UST
       endif
+
+! XYC added ssd roughness length (to ATM):
+      i1 = FieldIndex( expFieldName, 'z0rlen', rc )
+      if (ESMF_LogFoundError(rc, PASSTHRU)) return
+      if ( expFieldActive(i1) ) then
+        write(msg,'(a,a10)') trim(cname)//': ', &
+          trim(expFieldName(i1))
+        call ESMF_LogWrite(trim(msg), ESMF_LOGMSG_INFO)
+        flogr2(5,2) = .true.  !Charnock parm. (used to compute z0)
     
 #endif
 !
@@ -2089,6 +2098,7 @@
       integer(ESMF_KIND_I4) :: yy,mm,dd,h,m,s
       type(ESMF_Clock) :: clock
       type(ESMF_Time) :: currTime, stopTime
+      character(len=128) :: currtimeStr
 #if defined(TEST_WMESMFMD) || defined(TEST_WMESMFMD_GETIMPORT)
       type(ESMF_State) :: dumpState
       integer, save :: timeSlice = 1
@@ -2130,6 +2140,7 @@
       if (ESMF_LogFoundError(rc, PASSTHRU)) return
       tend(1) = 10000*yy + 100*mm + dd
       tend(2) = 10000*h  + 100*m  + s
+      call ESMF_TimeGet(currTime, timeStringISOFrac=currtimeStr , rc=rc)
 !
 ! -------------------------------------------------------------------- /
 ! Water levels
@@ -2232,8 +2243,11 @@
           twn = tcur
         else
           tw0 = twn
-          wx0 = wxn
-          wy0 = wyn
+          ! XYC note: this introduce 1 dt lag 
+          ! wx0 holds wind from the previous coupling time here.
+          ! but WW3 sees wx0 as the wind at current time.
+!          wx0 = wxn
+!          wy0 = wyn
           twn = tend
         endif
         tfn(:,j) = twn
@@ -2243,14 +2257,26 @@
           call BlendImpField( impField(i2), mbgField(i2), bmskField(i2), rc=rc )
           if (ESMF_LogFoundError(rc, PASSTHRU)) return
         endif
+!       Note: this is where the wxn, wyn are being updated 
         call FieldGather( impField(i1), nx, ny, wxn, rc=rc )
         if (ESMF_LogFoundError(rc, PASSTHRU)) return
         call FieldGather( impField(i2), nx, ny, wyn, rc=rc )
         if (ESMF_LogFoundError(rc, PASSTHRU)) return
         if (firstCall) then
+          print *, "WW3 first call initialize.."
+          print *, "WW3cap received:max(wxn)=", maxval(wxn)
           tw0 = twn
-          wx0 = wxn
+          wx0 = -5     ! xyc changed for test purpose (manual intialize)
+          wy0 = -5
+          wxn = -5     ! xyc changed for test purpose 
+          wyn = -5  
+          print *, "manual set:max(wxn)=", maxval(wxn)
+        else
+          ! xyc changed, so that the wind speed between current time and
+          ! the next coupling time is set constant.(at current time)
+          wx0 = wxn    
           wy0 = wyn
+          print *, "WW3cap: time:", trim(currtimeStr), "max(wxn)=", maxval(wxn)
         endif
         do imod = 1,nrgrd
           call w3setg ( imod, mdse, mdst )
@@ -2307,7 +2333,8 @@
 !
 #if defined(TEST_WMESMFMD) || defined(TEST_WMESMFMD_GETIMPORT)
       call NUOPC_Write(dumpState, overwrite=.true., &
-        fileNamePrefix="field_"//trim(cname)//"_import2_", &
+        ! XYC added currtimeStr for checking
+        fileNamePrefix="field_"//trim(cname)//"_import2_"//trim(currtimeStr), &
         timeslice=timeSlice, relaxedFlag=.true., rc=rc)
       if (ESMF_LogFoundError(rc, PASSTHRU)) return
       timeSlice = timeSlice + 1
@@ -2783,7 +2810,7 @@
 ! -------------------------------------------------------------------- /
 ! Post
 !
-!#if defined(TEST_WMESMFMD) || defined(TEST_WMESMFMD_CREATEIMPGRID)
+#if defined(TEST_WMESMFMD) || defined(TEST_WMESMFMD_CREATEIMPGRID)
       write(msg,'(a,i6)')  '     impGridID: ',impGridID
       call ESMF_LogWrite(trim(cname)//': CreateImpGrid: '//trim(msg), ESMF_LOGMSG_INFO)
       write(msg,'(a,l6)')  'impGridIsLocal: ',impGridIsLocal
@@ -2872,7 +2899,7 @@
       if (ESMF_LogFoundError(rc, PASSTHRU)) return
       call ESMF_FieldDestroy( tmpField, rc=rc )
       if (ESMF_LogFoundError(rc, PASSTHRU)) return
-!#endif
+#endif
 !
       rc = ESMF_SUCCESS
       if (verbosity.gt.0) call ESMF_LogWrite(trim(cname)// &
@@ -5444,6 +5471,8 @@
 !
 !/ ------------------------------------------------------------------- /
 !/
+!/PDLIB      use yowNodepool, only: np, iplg
+!/
 !/ ------------------------------------------------------------------- /
 !/ Parameter list
 !/
@@ -5457,28 +5486,49 @@
       logical, save :: firstCall = .true.
       integer :: isea, jsea
       real    :: emean, fmean, fmean1, wnmean, amax, ustar, ustdr, &
-                 tauwx, tauwy, cd, z0, fmeanws
+                 tauwx, tauwy, cd, z0, fmeanws, wnd_pa
       logical :: llws(nspec)
       type(ESMF_Field) :: wrlnField
       real(ESMF_KIND_RX), pointer :: wrln(:)
       integer, save :: timeSlice = 1
+      real, parameter :: kappa=0.4
 !
 ! -------------------------------------------------------------------- /
 !
       rc = ESMF_SUCCESS
 
-      wrlnField = ESMF_FieldCreate( natGrid, natArraySpec2D, &
+      if ( (GTYPE.eq.RLGTYPE).or.(GTYPE.eq.CLGTYPE) ) then
+        wrlnField = ESMF_FieldCreate( natGrid, natArraySpec2D, &
         staggerLoc=natStaggerLoc, rc=rc )
-      if (ESMF_LogFoundError(rc, PASSTHRU)) return
+        if (ESMF_LogFoundError(rc, PASSTHRU)) return
 
+      elseif (GTYPE.eq.UNGTYPE) then
+!/PDLIB      if ( LPDLIB == .FALSE. ) then
+        wrlnField = ESMF_FieldCreate( natGrid, natArraySpec1D, &
+        staggerLoc=natStaggerLoc, rc=rc )
+        if (ESMF_LogFoundError(rc, PASSTHRU)) return
+!/PDLIB      endif
+      endif
+
+!/PDLIB      if ( LPDLIB == .FALSE. ) then
+!/PDLIB!        Use auxiliary native grid/mesh to populate and redistribute data
       call FieldFill( wrlnField, zeroValue, rc=rc )
       if (ESMF_LogFoundError(rc, PASSTHRU)) return
+!/PDLIB      endif
 
       if ( natGridIsLocal ) then
 
+!/PDLIB      if ( LPDLIB == .FALSE. ) then
         call ESMF_FieldGet( wrlnField, farrayPtr=wrln, rc=rc )
         if (ESMF_LogFoundError(rc, PASSTHRU)) return
+!/PDLIB      else
+!/PDLIB!        Use single domain-decomposed native mesh to populate and communicate data
+!/PDLIB         call ESMF_FieldGet( wrlField, farrayPtr=wrln, rc=rc )
+!/PDLIB         if (ESMF_LogFoundError(rc, PASSTHRU)) return
+!/PDLIB      endif
 
+
+!/PDLIB      if ( LPDLIB == .FALSE. ) then
         jsea_loop: do jsea = 1,nseal
 !/DIST          isea = iaproc + (jsea-1)*naproc
 !/SHRD          isea = jsea
@@ -5501,14 +5551,31 @@
           endif !firstCall
           wrln(jsea) = charn(jsea)*ust(isea)**2/grav
         enddo jsea_loop
+!/PDLIB      else
+!/PDLIB        jsea_loop2: do jsea = 1,np 
+!/PDLIB          isea = iplg(jsea)
+!/PDLIB          wrln(jsea) = charn(jsea)*USTFLD(jsea)**2/grav
+!/PDLIB          ! if sea-state dependnet wind stress iteration
+!/PDLIB          ! failed:(use bulk z0)
+!/PDLIB          if ( QCFLG(jsea) .ne. 1 ) then
+!/PDLIB             ! TO-DO: add the bulk Z0 function here.(ADCIRC/GFDL/other?)
+!/PDLIB             call wnd2Z0Mbulk(U10(isea)/WIND_FAC, wrln(jsea))
+!/PDLIB!          else 
+!/PDLIB!            wnd_pa = U10(isea)/WIND_FAC * cos(U10D(isea) - USTDIRFLD(jsea))
+!/PDLIB!            wrln(jsea) = 10.0/exp( wnd_pa * kappa / USTFLD(jsea) )
+!/PDLIB          endif
+!/PDLIB       enddo jsea_loop2
+!/PDLIB      endif
 
       endif !natGridIsLocal
 
+!/PDLIB      if ( LPDLIB == .FALSE. ) then
       call ESMF_FieldRedist( wrlnField, wrlField, n2eRH, rc=rc )
       if (ESMF_LogFoundError(rc, PASSTHRU)) return
 
       call ESMF_FieldDestroy( wrlnField, rc=rc )
       if (ESMF_LogFoundError(rc, PASSTHRU)) return
+!/PDLIB     endif
 
       firstCall = .false.
 
@@ -6231,7 +6298,6 @@
 #undef METHOD
 #define METHOD "CalcFricVel"
       subroutine CalcFricVel (ustxField, ustyField, rc )
-!      subroutine CalcFricVel (a, ustxField, ustyField, rc )
 !/
 !/                  +-----------------------------------+
 !/                  | WAVEWATCH III           NOAA/NCEP |
@@ -6398,6 +6464,8 @@
           !frictional velocity; 
           if (QCFLG(isea).ne.INT(1)) then
            ! use bulk frictional velocity for ADCIRC
+           ! TO-DO: remove WIND_FAC when I complete a test with
+           ! betamax=1.33
              call wnd2ustadcbulk(U10(isea)/WIND_FAC, U10D(isea)/WIND_FAC,ustxn(jsea), ustyn(jsea))
           endif
 !#else
@@ -6455,7 +6523,8 @@
 #endif
 !/      
         END SUBROUTINE CalcFricVel
-
+!
+! --------- Extra subroutine added by XYC to compute bulk Z0 and ust
        subroutine wnd2ustadcbulk(u10, u10dir, ustx, usty)
          implicit none
          real,intent(in):: u10, u10dir
@@ -6483,6 +6552,62 @@
           usty=ustmag*sin(u10dir)
 
        end subroutine wnd2ustadcbulk 
+!
+       subroutine wnd2Z0Mbulk(U10, Z0BLK)
+          implicit none
+          real, intent(in)::  U10
+          real, intent(out)::  Z0BLK
+          real:: Cdadc, capval
+          real, parameter:: kappa=0.40
+          real(kind=8):: a(9),b(9)
+          
+      a(1)=1.044183210405817* 10**(-12)
+      a(2)=-5.707116220939218* 10**(-11)
+      a(3)=8.005722172810571* 10**(-10)
+      a(4)=6.322045801589353* 10**(-9)
+      a(5)=-2.422002988137712* 10**(-7)
+      a(6)=2.269200594753249* 10**(-6)
+      a(7)=-6.029592778169796* 10**(-6)
+      a(8)=8.882284703541603* 10**(-6)
+      a(9)=-2.371341185499601* 10**(-6)
+
+      b(1)=1.814407011197660* 10**(-15)
+      b(2)=-1.602907562918788* 10**(-13)
+      b(3)=-3.351205313520358* 10**(-11)
+      b(4)= 6.036179295940524* 10**(-9)
+      b(5)=-3.725481686822030* 10**(-7)
+      b(6)= 1.059761705898929* 10**(-5)
+      b(7)=-1.375241830530252* 10**(-4)
+      b(8)= 8.538858261732818* 10**(-4)
+      b(9)=-1.936638976963742* 10**(-3)
+
+         capval=0.0028
+
+         ! compute the ustmag from U10 according to adcirc bulk Cd
+         ! formula (Garratt 1977)
+         ! ust^2 = Cd*U10^2
+         Cdadc=(0.75+0.067*u10)*0.001
+         ! compute Z0 (at 10m height) from Cd:
+       !  Z0BLK = 10 / exp(kappa/sqrt(Cdadc))
+         ! If the GFDL Cd needs to be used, the following Z0 can be
+         ! used:
+         if ( 1 .eq. 1 ) then
+            if (U10 .le. 0.4) then
+               Z0BLK=4*10**(-7)
+            elseif ( U10 .le. 9.3 ) then
+               Z0BLK = a(9) + a(8)*U10 + a(7)*U10**2 + a(6)*U10**3 + &
+                       a(5)*U10**4 + a(4)*U10**5 + a(3)*U10**6 + & 
+                       a(2)*U10**7 + a(1)*U10**8
+            elseif ( U10 .lt. 60 ) then
+               Z0BLK = b(9) + b(8)*U10 + b(7)*U10**2 + b(6)*U10**3 + &
+                       b(5)*U10**4 + b(4)*U10**5 + b(3)*U10**6 + & 
+                       b(2)*U10**7 + b(1)*U10**8
+            else 
+              Z0BLK = 1.3025*10**(-3)
+            endif
+         endif 
+
+       end subroutine wnd2Z0Mbulk
 
 !/
 !/ End of module WMESMFMD -------------------------------------------- /

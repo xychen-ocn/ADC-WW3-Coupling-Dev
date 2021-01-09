@@ -33,6 +33,7 @@ module ATMESH
   use NUOPC_Model, &
     model_routine_SS      => SetServices,    &
     model_label_SetClock  => label_SetClock, &
+    model_label_DataInitialize => label_DataInitialize, &
     model_label_Advance   => label_Advance,  &
     model_label_CheckImport => label_CheckImport, &    
     model_label_Finalize  => label_Finalize
@@ -117,6 +118,25 @@ module ATMESH
       file=__FILE__)) &
       return  ! bail out
     
+    ! ------------- Construction Site -----------------  !
+    ! XYC added to update ATM at the end of intialization to provide non-zero
+    ! wind field to WAV and OCN components at t0.
+!    call NUOPC_CompSetEntryPoint(model, ESMF_METHOD_INITIALIZE, &
+!      phaseLabelList=(/"IPDv02p5"/), userRoutine=InitializeP4, rc=rc)
+!    call NUOPC_CompSetEntryPoint(model, ESMF_METHOD_INITIALIZE, &
+!         phaseLabelList=(/"IPDv00p4"/), userRoutine=DataInitialize, rc=rc)
+!    if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
+!      line=__LINE__, &
+!      file=__FILE__)) &
+!      return  ! bail out
+    call NUOPC_CompSpecialize(model, specLabel=model_label_DataInitialize, & 
+         specRoutine=DataInitialize, rc=rc)
+    if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
+      line=__LINE__, &
+      file=__FILE__)) &
+      return  ! bail out
+    ! ------------ Construction End -------------------  !
+
     ! attach specializing method(s)
     !call NUOPC_CompSpecialize(model, specLabel=model_label_SetClock, &
     !  specRoutine=SetClock, rc=rc)
@@ -148,7 +168,7 @@ module ATMESH
 !    call init_atmesh_nc()
 !    write(info,*) subname,' --- Read atmesh info from file --- '
     !print *,      info
-    call ESMF_LogWrite(info, ESMF_LOGMSG_INFO, rc=rc)
+!    call ESMF_LogWrite(info, ESMF_LOGMSG_INFO, rc=rc)
 
     write(info,*) subname,' --- adc SetServices completed --- '
     print *,      subname,' --- adc SetServices completed --- '
@@ -275,6 +295,9 @@ module ATMESH
 
 
     !--------- import fields to ATMESH  -------------
+    ! XYC added the sea surface roughness length:
+    call fld_list_add(num=fldsToATM_num, fldlist=fldsToATM, stdname="wave_z0_roughness_length" , shortname= "wavz0" )
+    
     
     !--------- export fields from ATMESH -------------
     call fld_list_add(num=fldsFrATM_num, fldlist=fldsFrATM, stdname="air_pressure_at_sea_level" , shortname= "pmsl" )
@@ -363,7 +386,7 @@ module ATMESH
     
     ! local variables    
     type(ESMF_TimeInterval) :: ATMESHTimeStep
-    type(ESMF_Field)        :: field
+    type(ESMF_Field)        :: lfield
     !Saeed added
     ! XYC changed:
     type(griddata)               :: mdataw
@@ -372,6 +395,11 @@ module ATMESH
     type(ESMF_Time)              :: startTime
     integer                      :: localPet, petCount
     character(len=*),parameter   :: subname='(ATMESH:RealizeFieldsProvidingGrid)'
+    ! exports
+    real(ESMF_KIND_R8), pointer   :: dataPtr_uwnd(:,:)
+    real(ESMF_KIND_R8), pointer   :: dataPtr_vwnd(:,:)
+    real(ESMF_KIND_R8), pointer   :: dataPtr_pres(:,:)
+    character(len=128)            :: timeStr
 
     rc = ESMF_SUCCESS
 
@@ -397,10 +425,6 @@ module ATMESH
     call create_parallel_esmf_grid_from_griddata(mdataw,ModelGrid )
     !
    
-   ! XYC: testing ATM2OCN: MeshWrite Error is encountered:
-   !      the following lines may not be significant.
-   ! write(*,*) 'XC:-- Enter Check Point 1---'
-   ! Question: how to call it. 
     call ESMF_GridWriteVTK(ModelGrid, staggerLoc=ESMF_STAGGERLOC_CENTER, &
                         filename="atmesh_mesh.nc", rc=rc)
     if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
@@ -438,22 +462,78 @@ module ATMESH
         file=__FILE__)) &
         return  ! bail out
 
-      !Init ATMesh
+   if ( 1 .eq. 0 ) then
+      !Init ATMesh  (XYC uncommented)
 !    ! query Component for the driverClock
-!    call NUOPC_ModelGet(model, driverClock=driverClock, rc=rc)
-!    if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
-!      line=__LINE__, &
-!      file=__FILE__)) &
-!      return  ! bail out
+    call NUOPC_ModelGet(model, driverClock=driverClock, rc=rc)
+    if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
+      line=__LINE__, &
+      file=__FILE__)) &
+      return  ! bail out
     
     ! get the start time and current time out of the clock
-!    call ESMF_ClockGet(driverClock, startTime=startTime, rc=rc)
-!    if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
-!      line=__LINE__, &
-!      file=__FILE__)) &
-!      return  ! bail out
+    call ESMF_ClockGet(driverClock, startTime=startTime, rc=rc)
+    if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
+      line=__LINE__, &
+      file=__FILE__)) &
+      return  ! bail out
 
-!    call read_atmesh_nc(startTime)
+    call ESMF_ClockPrint(driverClock, options="startTime", &
+      preString="------>Driver start from: ", rc=rc)
+    if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
+      line=__LINE__, &
+      file=__FILE__)) &
+      return  ! bail out
+
+    call read_atmesh_nc(startTime)
+    ! establish a pointer to the exportStates
+    ! fill the pointer at start Time. (This should happen on IPDv4..
+    ! >>>>> PACK and send UWND
+    ! load in the information to pointer first;
+    call State_getFldPtr_from_Grid(ST=exportState,fldname='izwh10m',fldptr=dataPtr_uwnd, &
+          rc=rc,dump=.false.,timeStr=timeStr) 
+    if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
+      line=__LINE__, &
+      file=__FILE__)) &
+      return  ! bail out
+    dataPtr_uwnd(:,:) = atm_strucgrd%UWND(:,:,1)
+
+    ! now dump to check if field has been updated:
+    call ESMF_StateGet(exportState, itemName='izwh10m', field=lfield, rc=rc)
+    if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, line=__LINE__, file=__FILE__)) return
+
+        call ESMF_FieldWrite(lfield, &
+        fileName='field_atmesh_izwh10m'//trim(timeStr)//'.nc', &
+        rc=rc,overwrite=.true.)
+        if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
+          line=__LINE__, &
+          file=__FILE__)) &
+          return  ! bail out
+    !----------------------------------------
+    ! >>>>> PACK and send VWND
+    call State_getFldPtr_from_Grid(ST=exportState,fldname='imwh10m',fldptr=dataPtr_vwnd, &
+                                    rc=rc,dump=.false.,timeStr=timeStr) 
+    if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
+      line=__LINE__, &
+      file=__FILE__)) &
+      return  ! bail out
+
+    dataPtr_vwnd(:,:) = atm_strucgrd%VWND(:,:,1)
+    !----------------------------------------
+    ! >>>>> PACK and send PRES
+    call State_getFldPtr_from_Grid(ST=exportState,fldname='pmsl',fldptr=dataPtr_pres, &
+                                    rc=rc,dump=.false.,timeStr=timeStr) 
+    if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
+      line=__LINE__, &
+      file=__FILE__)) &
+      return  ! bail out
+
+    dataPtr_pres(:,:) = atm_strucgrd%PRES(:,:,1)
+    !----------------------------------------
+      call ESMF_LogWrite(trim(subname)// &
+        ': leaving DataInitialize', ESMF_LOGMSG_INFO)
+
+    endif
 
     write(info,*) subname,' --- initialization phase 2 completed --- '
     print *,      subname,' --- initialization phase 2 completed --- '
@@ -669,7 +749,7 @@ module ATMESH
 !    real(ESMF_KIND_R8), pointer   :: tmp(:,:)
 
     !imports
-
+    real(ESMF_KIND_R8), pointer   :: dataPtr_z0(:,:)
 
     ! exports
     real(ESMF_KIND_R8), pointer   :: dataPtr_uwnd(:,:)
@@ -741,92 +821,72 @@ module ATMESH
     !-----------------------------------------
     !   IMPORT
     !-----------------------------------------
-
+    ! adding roughness length from the WW3 model:
+    ! get and fill imported fields (refer to WW3DATA): 
+    ! <<<<< RECEIVE and UN-PACK WAVZ0
+    call State_getFldPtr_from_Grid(ST=importState, fldname='wavz0',fldptr=dataPtr_z0, &
+        rc=rc, dump=.true., timeStr=timeStr)
+      if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
+        line=__LINE__, &
+        file=__FILE__)) &
+        return  ! bail out
 
     !-----------------------------------------
     !   EXPORT
     !-----------------------------------------
     !update uwnd, vwnd, pres from nearset time in atmesh netcdf file
     !TODO: update file name!!!!
-    print *, 'debug: reading netcdf from ATMESH'
+!    print *, 'debug: reading netcdf from ATMESH'
+!    call read_atmesh_nc(currTime+timeStep)
     call read_atmesh_nc(currTime)
-        print *, 'min max pmsl', minval(atm_strucgrd%PRES(:,:,1)), maxval(atm_strucgrd%PRES(:,:,1))
+!        print *, 'min max pmsl', minval(atm_strucgrd%PRES(:,:,1)), maxval(atm_strucgrd%PRES(:,:,1))
 
     !pack and send exported fields
-    ! Q: is there an equivalent for the structured grid???
-    !allocate (tmp(mdataOutw%NumOwnedNd))
 
     ! >>>>> PACK and send UWND
     !call State_getFldPtr(ST=exportState,fldname='izwh10m',fldptr=dataPtr_uwnd,rc=rc)
     !call State_getFldPtr_(ST=exportState,fldname='izwh10m',fldptr=dataPtr_uwnd, &
     !  rc=rc,dump=.false.,timeStr=timeStr)
-    ! I am not sure which bound to use for extracting data.
 
-!  do lde = 0, ldeCount-1
     call State_getFldPtr_from_Grid(ST=exportState,fldname='izwh10m',fldptr=dataPtr_uwnd, &
           rc=rc,dump=.false.,timeStr=timeStr) 
-    ! debug print:
 
     if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
       line=__LINE__, &
       file=__FILE__)) &
       return  ! bail out
-      !write(*,*) "debug: lde=", lde
-      write(*,*) "debug: lbound_dim1=", lbound(dataPtr_uwnd,1), & 
-                 "ubound_dim1=",  ubound(dataPtr_uwnd,1)
-      write(*,*) "debug: lbound_dim2=", lbound(dataPtr_uwnd,2), & 
-                 "ubound_dim2=",  ubound(dataPtr_uwnd,2)
-      !print *, 'mdataOutw%NumOwnedNd > ',mdataOutw%NumOwnedNd, 'UWND > ', UWND(1:10,1)
 
     iwind_test = iwind_test + 1
-    !fill only owned nodes for tmp vector
-    ! ----------- Major code modification area for structured grid input   -----!
-    ! how should I find the OwnedNd for the structured grid??
-    ! I seemed to find the relevant example from ESMF ref.
+    dataPtr_uwnd(:,:) = atm_strucgrd%UWND(:,:,1)
+
+    ! now dump to check if field has been updated:
+    call State_dump(ST=exportState, fldname='izwh10m', rc=rc, timeStr=timeStr)
+    if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, line=__LINE__, file=__FILE__)) return
     !  
-!    do i2=lbound(dataPtr_uwnd,2), ubound(dataPtr_uwnd,2)
-!      do i1=lbound(dataPtr_uwnd,1), ubound(dataPtr_uwnd,1)
-    !do i1 = 1, mdataOutw%NumOwnedNd, 1
-        ! tmp(i1,i2) = atm_strucgrd%UWND(i1,i2,1)
-       ! tmp(i1) = UWND(mdataOutw%owned_to_present_nodes(i1),1)
-        !tmp(i1) = iwind_test  * i1 / 100000.0
-        !tmp(i1) = -3.0
-!      enddo
-!    enddo
  
-!  enddo    ! loop lde
     !assign to field
 !    dataPtr_uwnd = tmp
-    dataPtr_uwnd(:,:) = atm_strucgrd%UWND(:,:,1)
-    write(*,*) 'debug: maxval(UWND_PTR)=', maxval(dataPtr_uwnd),&
-             'maxval(UWNDDATA)=', maxval(atm_strucgrd%UWND(:,:,1))
-    write(*,*) 'size(UGRD10(:,:,:)) >>', size(atm_strucgrd%UWND(:,:,:))
+!    write(*,*) 'debug: maxval(UWND_PTR)=', maxval(dataPtr_uwnd),&
+!             'maxval(UWNDDATA)=', maxval(atm_strucgrd%UWND(:,:,1))
+!    write(*,*) 'size(UGRD10(:,:,:)) >>', size(atm_strucgrd%UWND(:,:,:))
     !----------------------------------------
     ! >>>>> PACK and send VWND
-!  do lde = 0, ldeCount-1
     !call State_getFldPtr_(ST=exportState,fldname='imwh10m',fldptr=dataPtr_vwnd, &
     !  rc=rc,dump=.false.,timeStr=timeStr)
     call State_getFldPtr_from_Grid(ST=exportState,fldname='imwh10m',fldptr=dataPtr_vwnd, &
                                     rc=rc,dump=.false.,timeStr=timeStr) 
-    !call State_getFldPtr (ST=exportState,fldname='imwh10m',fldptr=dataPtr_vwnd,rc=rc)
     if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
       line=__LINE__, &
       file=__FILE__)) &
       return  ! bail out
 
-    !fill only owned nodes for tmp vector
-    !do i1 = 1, mdataOutw%NumOwnedNd, 1
-    !do i2=lbound(dataPtr_vwnd,2), ubound(dataPtr_vwnd,2)
-    !  do i1=lbound(dataPtr_vwnd,1), ubound(dataPtr_vwnd,1)
-    !    tmp(i1,i2) = atm_strucgrd%VWND(i1,i2,1)
-       ! tmp(i1) = VWND(mdataOutw%owned_to_present_nodes(i1),1)
-        !tmp(i1) = 15.0
-    !  enddo
-    !end do
-  !enddo
     !assign to field
   !  dataPtr_vwnd = tmp
     dataPtr_vwnd(:,:) = atm_strucgrd%VWND(:,:,1)
+
+    call State_dump(ST=exportState, fldname='imwh10m', rc=rc, timeStr=timeStr)
+    if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, line=__LINE__, file=__FILE__)) return
+
     !----------------------------------------
     ! >>>>> PACK and send PRES
   !do lde = 0, ldeCount-1
@@ -839,23 +899,13 @@ module ATMESH
       file=__FILE__)) &
       return  ! bail out
 
-    !fill only owned nodes for tmp vector
-    !do i1 = 1, mdataOutw%NumOwnedNd, 1
-!    do i2=lbound(dataPtr_pres,2), ubound(dataPtr_pres,2)
-!      do i1=lbound(dataPtr_pres,1), ubound(dataPtr_pres,1)
-!        tmp(i1,i2) = atm_strucgrd%PRES(i1,i2,1) 
-        !tmp(i1) = PRES(mdataOutw%owned_to_present_nodes(i1),1) 
-        
-!        if ( abs(tmp(i1,i2) ).gt. 1e11)  then
-!          STOP '  dataPtr_pmsl > mask1 > in ATMesh ! '     
-!        end if
-        !tmp(i1) = 1e4
-!      enddo
-!    end do
-!   enddo      ! loop lde
     !assign to field
 !    dataPtr_pres = tmp
     dataPtr_pres(:,:) = atm_strucgrd%PRES(:,:,1)
+
+    call State_dump(ST=exportState, fldname='pmsl', rc=rc, timeStr=timeStr)
+    if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, line=__LINE__, file=__FILE__)) return
+
     !----------------------------------------
 
 
@@ -958,7 +1008,7 @@ module ATMESH
       if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
         line=__LINE__, file=__FILE__)) &
         return  ! bail out
-    write(*,*) "debug: ldeCount=", ldeCount
+    !write(*,*) "debug: ldeCount=", ldeCount
     if (dump) then
        if (.not. present(timeStr)) timeStr="_"
         call ESMF_FieldWrite(lfield, &
@@ -972,6 +1022,32 @@ module ATMESH
   end subroutine State_GetFldPtr_from_Grid
 
 
+  subroutine State_dump(ST, fldname, rc, timeStr)
+    type(ESMF_State), intent(in) :: ST
+    character(len=*), intent(in) :: fldname
+    integer, intent(out), optional :: rc
+    character(len=128),intent(inout) :: timeStr
+    ! local variables
+    type(ESMF_Field) :: lfield
+    integer :: lrc
+    character(len=*),parameter :: subname='(atmesh_cap:State_dump)'
+    
+   ! ESMF ref: 21.7.10- Get an item from a State by item name. 
+    call ESMF_StateGet(ST, itemName=trim(fldname), field=lfield, rc=lrc)
+    if (ESMF_LogFoundError(rcToCheck=lrc, msg=ESMF_LOGERR_PASSTHRU, line=__LINE__, file=__FILE__)) return
+    ! ESMF ref: 26.6.46 - Get a DE-local Fortran array pointer from a Field
+    ! Description: get a fortran pointer to DE-local memory allocation within
+    ! field, DE-local bounds can be queried at the same time. see section
+    ! 26.3.2.
+
+        call ESMF_FieldWrite(lfield, &
+        fileName='field_atmesh_'//trim(fldname)//trim(timeStr)//'.nc', &
+        rc=rc,overwrite=.true.)
+        if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
+          line=__LINE__, &
+          file=__FILE__)) &
+          return  ! bail out
+  end subroutine State_dump
 
   subroutine CheckImport(model, rc)
     type(ESMF_GridComp)   :: model
@@ -998,7 +1074,7 @@ module ATMESH
 !    call NUOPC_ModelGet(model, driverClock=driverClock, rc=rc)
 !    if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
 !      line=__LINE__, &
-!      file=__FILE__)) &
+!     file=__FILE__)) &
 !      return  ! bail out
 !    
 !    ! get the start time and current time out of the clock
@@ -1051,5 +1127,225 @@ module ATMESH
         call ESMF_LogWrite(info, ESMF_LOGMSG_INFO, rc=dbrc)
 
     end subroutine ATMESH_model_finalize
+
+
+   ! ------------- XYC added to update ATM field for the connector? -------
+   ! check module_Mediator.F90 in NEMS/src to set this up?
+   ! Wait to be tested / to be instructed :
+   ! some objects have not be created when the following subroutine is called;
+   ! It seems to me that I need to initialize the connector instead?
+    subroutine DataInitialize(gcomp, rc)
+       
+       type(ESMF_GridComp)    :: gcomp
+       integer, intent(out)  :: rc
+       
+       ! local variables
+       type(ESMF_Clock)      :: clock, driverClock
+       type(ESMF_Time)       :: currTime, startTime
+       type(ESMF_State)            :: importState, exportState
+
+       character(len=*), parameter  :: subname='(ATMESH: DataInitialize)'
+
+      ! exports
+       real(ESMF_KIND_R8), pointer   :: dataPtr_uwnd(:,:)
+       real(ESMF_KIND_R8), pointer   :: dataPtr_vwnd(:,:)
+       real(ESMF_KIND_R8), pointer   :: dataPtr_pres(:,:)
+
+       type(ESMF_StateItem_Flag)     :: itemType
+       type(ESMF_Grid)               :: grid
+       type(ESMF_Field)              :: lfield
+       character(len=128)            :: fldname,timeStr
+       integer                       :: i1, i2
+     ! local variables for Get methods
+       integer :: YY, MM, DD, H, M, S
+
+       rc = ESMF_SUCCESS
+
+    ! ----------------------------------------
+    ! get the start time and current time out of the clock
+    call NUOPC_ModelGet(gcomp, driverClock=driverClock, rc=rc)
+    if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
+      line=__LINE__, &
+      file=__FILE__)) &
+      return  ! bail out
+    
+    call ESMF_ClockGet(driverClock, startTime=startTime, rc=rc)
+    if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
+      line=__LINE__, &
+      file=__FILE__)) &
+      return  ! bail out
+
+    call ESMF_ClockPrint(driverClock, options="startTime", &
+      preString="------>Driver start from: ", rc=rc)
+    if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
+      line=__LINE__, &
+      file=__FILE__)) &
+   
+    ! query the Component for its clock, importState and exportState
+!    call NUOPC_ModelGet(gcomp, modelClock=clock, importState=importState, &
+!      exportState=exportState, rc=rc)
+!    call ESMF_GridCompGet(gcomp, clock=clock, rc=rc)
+!    if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
+!      line=__LINE__, file=__FILE__)) return  ! bail out
+    
+    ! get the current time:
+!    call ESMF_ClockGet(clock, currTime=currTime,rc=rc)
+!    if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
+!      line=__LINE__, file=__FILE__)) return  ! bail out
+
+    ! if current time is start time then initialize data:
+!    if (currTime .eq. startTime) then
+
+      call ESMF_LogWrite(trim(subname)// &
+        ': entered DataInitialize', ESMF_LOGMSG_INFO)
+
+    !   EXPORT
+    !-----------------------------------------
+    call read_atmesh_nc(startTime)
+    ! >>>>> PACK and send UWND
+    ! load in the information to pointer first;
+    call State_getFldPtr_from_Grid(ST=exportState,fldname='izwh10m',fldptr=dataPtr_uwnd, &
+          rc=rc,dump=.true.,timeStr=timeStr) 
+    if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
+      line=__LINE__, &
+      file=__FILE__)) &
+      return  ! bail out
+    dataPtr_uwnd(:,:) = atm_strucgrd%UWND(:,:,1)
+
+
+    !----------------------------------------
+    ! >>>>> PACK and send VWND
+    call State_getFldPtr_from_Grid(ST=exportState,fldname='imwh10m',fldptr=dataPtr_vwnd, &
+                                    rc=rc,dump=.true.,timeStr=timeStr) 
+    if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
+      line=__LINE__, &
+      file=__FILE__)) &
+      return  ! bail out
+    dataPtr_vwnd(:,:) = atm_strucgrd%VWND(:,:,1)
+
+
+    !----------------------------------------
+    ! >>>>> PACK and send PRES
+    call State_getFldPtr_from_Grid(ST=exportState,fldname='pmsl',fldptr=dataPtr_pres, &
+                                    rc=rc,dump=.false.,timeStr=timeStr) 
+    if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
+      line=__LINE__, &
+      file=__FILE__)) &
+      return  ! bail out
+
+    dataPtr_pres(:,:) = atm_strucgrd%PRES(:,:,1)
+    !----------------------------------------
+      call ESMF_LogWrite(trim(subname)// &
+        ': leaving DataInitialize', ESMF_LOGMSG_INFO)
+!    endif
+
+    end subroutine DataInitialize
+
+  subroutine InitializeP4(model, importState, exportState, clock, rc)
+    type(ESMF_GridComp)  :: model
+    type(ESMF_State)     :: importState, exportState
+    type(ESMF_Clock)     :: clock, driverClock
+    integer, intent(out) :: rc
+    
+    ! local variables    
+    type(ESMF_TimeInterval) :: ATMESHTimeStep
+    type(ESMF_Field)        :: lfield
+    !Saeed added
+    ! XYC changed:
+    type(griddata)               :: mdataw
+    type(ESMF_Grid)              :: ModelGrid,meshIn,meshOut
+    type(ESMF_VM)                :: vm
+    type(ESMF_Time)              :: startTime
+    integer                      :: localPet, petCount
+    character(len=*),parameter   :: subname='(ATMESH: Field data initialization)'
+
+    ! exports
+    real(ESMF_KIND_R8), pointer   :: dataPtr_uwnd(:,:)
+    real(ESMF_KIND_R8), pointer   :: dataPtr_vwnd(:,:)
+    real(ESMF_KIND_R8), pointer   :: dataPtr_pres(:,:)
+    character(len=128)            :: timeStr
+
+    rc = ESMF_SUCCESS
+
+    ! ----------------------------------------
+      !Init ATMesh  (XYC uncommented)
+!    ! query Component for the driverClock
+    call NUOPC_ModelGet(model, driverClock=driverClock, rc=rc)
+    if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
+      line=__LINE__, &
+      file=__FILE__)) &
+      return  ! bail out
+    
+    ! get the start time and current time out of the clock
+    call ESMF_ClockGet(driverClock, startTime=startTime, rc=rc)
+    if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
+      line=__LINE__, &
+      file=__FILE__)) &
+      return  ! bail out
+
+    call ESMF_ClockPrint(driverClock, options="startTime", &
+      preString="------>Driver start from: ", rc=rc)
+    if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
+      line=__LINE__, &
+      file=__FILE__)) &
+      return  ! bail out
+
+    call ESMF_TimeGet(startTime, timeStringISOFrac=timeStr , rc=rc)
+    if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
+        line=__LINE__, &
+        file=__FILE__)) &
+        return  ! bail out
+
+    call ESMF_LogWrite(trim(subname)// &
+        ': entered DataInitialize', ESMF_LOGMSG_INFO)
+
+    call read_atmesh_nc(startTime)
+    ! >>>>> PACK and send UWND
+    ! load in the information to pointer first;
+    call State_getFldPtr_from_Grid(ST=exportState,fldname='izwh10m',fldptr=dataPtr_uwnd, &
+          rc=rc,dump=.true.,timeStr=timeStr) 
+    if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
+      line=__LINE__, &
+      file=__FILE__)) &
+      return  ! bail out
+    dataPtr_uwnd(:,:) = atm_strucgrd%UWND(:,:,1)
+
+    ! now dump to check if field has been updated:
+    call ESMF_StateGet(exportState, itemName='izwh10m', field=lfield, rc=rc)
+    if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, line=__LINE__, file=__FILE__)) return
+
+        call ESMF_FieldWrite(lfield, &
+        fileName='field_atmesh_izwh10m'//trim(timeStr)//'.nc', &
+        rc=rc,overwrite=.true.)
+        if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
+          line=__LINE__, &
+          file=__FILE__)) &
+          return  ! bail out
+    !----------------------------------------
+    ! >>>>> PACK and send VWND
+    call State_getFldPtr_from_Grid(ST=exportState,fldname='imwh10m',fldptr=dataPtr_vwnd, &
+                                    rc=rc,dump=.true.,timeStr=timeStr) 
+    if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
+      line=__LINE__, &
+      file=__FILE__)) &
+      return  ! bail out
+    dataPtr_vwnd(:,:) = atm_strucgrd%VWND(:,:,1)
+
+    !----------------------------------------
+    ! >>>>> PACK and send PRES
+    call State_getFldPtr_from_Grid(ST=exportState,fldname='pmsl',fldptr=dataPtr_pres, &
+                                    rc=rc,dump=.false.,timeStr=timeStr) 
+    if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
+      line=__LINE__, &
+      file=__FILE__)) &
+      return  ! bail out
+
+    dataPtr_pres(:,:) = atm_strucgrd%PRES(:,:,1)
+    !----------------------------------------
+      call ESMF_LogWrite(trim(subname)// &
+        ': leaving DataInitialize', ESMF_LOGMSG_INFO)
+    write(info,*) subname,' --- data initialization completed --- '
+    call ESMF_LogWrite(info, ESMF_LOGMSG_INFO, line=__LINE__, file=__FILE__, rc=dbrc)
+  end subroutine InitializeP4
 
 end module

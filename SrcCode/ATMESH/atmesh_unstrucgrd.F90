@@ -47,8 +47,8 @@ module ATMESH
   end type fld_list_type
 
   integer,parameter :: fldsMax = 100
-  integer :: fldsToWav_num = 0
-  type (fld_list_type) :: fldsToWav(fldsMax)
+  integer :: fldsToATM_num = 0
+  type (fld_list_type) :: fldsToATM(fldsMax)
   integer :: fldsFrATM_num = 0
   type (fld_list_type) :: fldsFrATM(fldsMax)
 
@@ -170,16 +170,16 @@ module ATMESH
     call ATMESH_FieldsSetup()
 !
 
-      do num = 1,fldsToWav_num
-          !print *,  "fldsToWav_num  ", fldsToWav_num
-          !print *,  "fldsToWav(num)%shortname  ", fldsToWav(num)%shortname
-          !print *,  "fldsToWav(num)%stdname  ", fldsToWav(num)%stdname
+      do num = 1,fldsToATM_num
+          !print *,  "fldsToATM_num  ", fldsToATM_num
+          !print *,  "fldsToATM(num)%shortname  ", fldsToATM(num)%shortname
+          !print *,  "fldsToATM(num)%stdname  ", fldsToATM(num)%stdname
 
-          write(info,*) subname,  "fldsToWav(num)%shortname  ", fldsToWav(num)%shortname
+          write(info,*) subname,  "fldsToATM(num)%shortname  ", fldsToATM(num)%shortname
           call ESMF_LogWrite(info, ESMF_LOGMSG_INFO, rc=dbrc)
      end do
 
-      call ATMESH_AdvertiseFields(importState, fldsToWav_num, fldsToWav, rc)
+      call ATMESH_AdvertiseFields(importState, fldsToATM_num, fldsToATM, rc)
       if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
         line=__LINE__, &
         file=__FILE__)) &
@@ -323,7 +323,7 @@ module ATMESH
   !-----------------------------------------------------------------------------
     !> Called by NUOPC to realize import and export fields.
 
-    !! The fields to import and export are stored in the fldsToWav and fldsFrATM
+    !! The fields to import and export are stored in the fldsToATM and fldsFrATM
     !! arrays, respectively.  Each field entry includes the standard name,
     !! information about whether the field's grid will be provided by the cap,
     !! and optionally a pointer to the field's data array.  Currently, all fields
@@ -403,7 +403,7 @@ module ATMESH
 
 
 
-    call ATMESH_RealizeFields(importState, meshIn , mdataw, fldsToWav_num, fldsToWav, "ATMESH import", rc)
+    call ATMESH_RealizeFields(importState, meshIn , mdataw, fldsToATM_num, fldsToATM, "ATMESH import", rc)
     if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
         line=__LINE__, &
         file=__FILE__)) &
@@ -733,6 +733,12 @@ module ATMESH
     !call State_getFldPtr(ST=exportState,fldname='izwh10m',fldptr=dataPtr_uwnd,rc=rc)
     call State_getFldPtr_(ST=exportState,fldname='izwh10m',fldptr=dataPtr_uwnd, &
       rc=rc,dump=.false.,timeStr=timeStr)
+    ! XYC Note here:
+    ! the dump above doesn't reflect the information sending at current
+    ! time, because the data array associated with the pointer has not been
+    ! filled yet. So, the information dumped would be from the previous time
+    ! This is only the issue when dumping info. passed to the connector. 
+    ! When retrieving information, the dump is associated with information received at the current time.
 
     if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
       line=__LINE__, &
@@ -750,6 +756,11 @@ module ATMESH
     end do
     !assign to field
     dataPtr_uwnd = tmp
+
+    ! XYC Note: now dump to check if field has been updated:
+    call State_dump(ST=exportState, fldname='izwh10m', rc=rc, timeStr=timeStr)
+    if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, line=__LINE__, file=__FILE__)) return
+    !  
     !----------------------------------------
     ! >>>>> PACK and send VWND
     call State_getFldPtr_(ST=exportState,fldname='imwh10m',fldptr=dataPtr_vwnd, &
@@ -767,6 +778,9 @@ module ATMESH
     end do
     !assign to field
     dataPtr_vwnd = tmp
+
+    call State_dump(ST=exportState, fldname='imwh10m', rc=rc, timeStr=timeStr)
+    if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, line=__LINE__, file=__FILE__)) return
     !----------------------------------------
     ! >>>>> PACK and send PRES
     call State_getFldPtr_(ST=exportState,fldname='pmsl',fldptr=dataPtr_pres,&
@@ -860,6 +874,33 @@ module ATMESH
     if (present(rc)) rc = lrc
   end subroutine State_GetFldPtr
 
+
+  subroutine State_dump(ST, fldname, rc, timeStr)
+    type(ESMF_State), intent(in) :: ST
+    character(len=*), intent(in) :: fldname
+    integer, intent(out), optional :: rc
+    character(len=128),intent(inout) :: timeStr
+    ! local variables
+    type(ESMF_Field) :: lfield
+    integer :: lrc
+    character(len=*),parameter :: subname='(atmesh_cap:State_dump)'
+    
+   ! ESMF ref: 21.7.10- Get an item from a State by item name. 
+    call ESMF_StateGet(ST, itemName=trim(fldname), field=lfield, rc=lrc)
+    if (ESMF_LogFoundError(rcToCheck=lrc, msg=ESMF_LOGERR_PASSTHRU, line=__LINE__, file=__FILE__)) return
+    ! ESMF ref: 26.6.46 - Get a DE-local Fortran array pointer from a Field
+    ! Description: get a fortran pointer to DE-local memory allocation within
+    ! field, DE-local bounds can be queried at the same time. see section
+    ! 26.3.2.
+
+        call ESMF_FieldWrite(lfield, &
+        fileName='field_atmesh_'//trim(fldname)//trim(timeStr)//'.nc', &
+        rc=rc,overwrite=.true.)
+        if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
+          line=__LINE__, &
+          file=__FILE__)) &
+          return  ! bail out
+  end subroutine State_dump
 
 
   subroutine CheckImport(model, rc)

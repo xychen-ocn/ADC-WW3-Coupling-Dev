@@ -171,11 +171,9 @@ module atmesh_mod
       call check( nf90_inq_dimid(ncid, ELM_NAME, ELM_dimid) )
       call check( nf90_inq_dimid(ncid, NOE_NAME, NOE_dimid) )
 
-      ! How many values of "nodes" are there?
       call check(nf90_inquire_dimension(ncid, NOD_dimid, len = nnode) )
       call check(nf90_inquire_dimension(ncid, ELM_dimid, len = nelem) )
       call check(nf90_inquire_dimension(ncid, NOE_dimid, len = noel) )
-      ! What is the name of the unlimited dimension, how many records are there?
       call check(nf90_inquire_dimension(ncid, rec_dimid, len = ntime))
 
       !print *,  ' nelem  > ',nelem , ' noel  > ' ,noel,  ' ntime > ',ntime
@@ -381,11 +379,13 @@ module atmesh_mod
         start3D = (/ 1  , 1   , it/)
         count3D = (/nlon, nlat, 1 /)  !for some reason the order here is otherway around?!
 
-        print *, start3D+count3D
+        !print *, start3D+count3D
+        print *, "read ATMesh: it=", start3D(3)
         !print *,size(UWND(ntime,:))
         call check( nf90_get_var(ncid,UWND_varid, atm_strucgrd%UWND, start3D, count3D) )
         call check( nf90_get_var(ncid,VWND_varid, atm_strucgrd%VWND, start3D, count3D) )
         call check( nf90_get_var(ncid,PRES_varid, atm_strucgrd%PRES, start3D, count3D) )
+        print *, "read ATMesh: max(U)=", maxval(atm_strucgrd%UWND)
 
       ENDIF    ! end reading info. from unstructured or structured grid
       write(info,*) subname,' --- read ATMesh netcdf file  --- '
