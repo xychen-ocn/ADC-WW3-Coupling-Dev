@@ -180,9 +180,9 @@
 !***  Print subversion version and other status information.
 !-----------------------------------------------------------------------
 !
-!#if defined ("(xychen) Wed Oct 14 20:45:52 EDT 2020 r2fdfde2b49b2 https://github.com/moghimis/NEMS") && defined (2020) && defined (288)
-!      if (mype==0) call w3tagb('NEMS '//"(xychen) Wed Oct 14 20:45:52 EDT 2020 r2fdfde2b49b2 https://github.com/moghimis/NEMS",                       &
-!                               2020, 288, 0000, 'NEMS')
+!#if defined ("(xychen) Tue Dec 22 14:10:44 EST 2020 r origin") && defined (2020) && defined (357)
+!      if (mype==0) call w3tagb('NEMS '//"(xychen) Tue Dec 22 14:10:44 EST 2020 r origin",                       &
+!                               2020, 357, 0000, 'NEMS')
 !#else
 !      if (mype==0) call w3tagb('nems     ',0000,0000,0000,'np23   ')
 !#endif

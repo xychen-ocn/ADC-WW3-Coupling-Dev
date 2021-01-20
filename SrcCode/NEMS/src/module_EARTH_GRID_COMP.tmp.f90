@@ -64,10 +64,10 @@
   ! - Handle build time ATM options:
   ! - Handle build time OCN options:
       use adc_cap,     only: ADCIRC_SS  => SetServices
-      use wav,    only: WW3DATA_SS  => SetServices
       use ATMESH,     only: ATMESH_SS  => SetServices
   ! - Handle build time ICE options:
   ! - Handle build time WAV options:
+      use WMESMFMD,        only: WW3_SS  => SetServices
   ! - Handle build time LND options:
   ! - Handle build time IPM options:
   ! - Handle build time HYD options:
@@ -3479,11 +3479,10 @@
               file="module_EARTH_GRID_COMP.F90", rcToReturn=rc)
             return  ! bail out
           elseif (trim(model) == "ww3") then
-            write (msg, *) "Model '", trim(model), "' was requested, "// &
-              "but is not available in the executable!"
-            call ESMF_LogSetError(ESMF_RC_NOT_VALID, msg=msg, line=3760, &
-              file="module_EARTH_GRID_COMP.F90", rcToReturn=rc)
-            return  ! bail out
+            call NUOPC_DriverAddComp(driver, trim(prefix), WW3_SS, &
+              petList=petList, comp=comp, rc=rc)
+            if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
+              line=3756, file=trim(name)//":"//"module_EARTH_GRID_COMP.F90")) return  ! bail out
           elseif (trim(model) == "slnd") then
             write (msg, *) "Model '", trim(model), "' was requested, "// &
               "but is not available in the executable!"
@@ -3568,10 +3567,11 @@
               file="module_EARTH_GRID_COMP.F90", rcToReturn=rc)
             return  ! bail out
           elseif (trim(model) == "ww3data") then
-            call NUOPC_DriverAddComp(driver, trim(prefix), WW3DATA_SS, &
-              petList=petList, comp=comp, rc=rc)
-            if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
-              line=3951, file=trim(name)//":"//"module_EARTH_GRID_COMP.F90")) return  !  bail out
+            write (msg, *) "Model '", trim(model), "' was requested, "// &
+              "but is not available in the executable!"
+            call ESMF_LogSetError(ESMF_RC_NOT_VALID, msg=msg, line=3955, &
+              file="module_EARTH_GRID_COMP.F90", rcToReturn=rc)
+            return  ! bail out
           elseif (trim(model) == "atmesh") then
             call NUOPC_DriverAddComp(driver, trim(prefix), ATMESH_SS, &
               petList=petList, comp=comp, rc=rc)

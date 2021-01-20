@@ -258,6 +258,7 @@ module module_MEDIATOR
 !  real(ESMF_KIND_R8), parameter :: spval_init = -9.99999e6_ESMF_KIND_R8  ! spval for initialization
 !  real(ESMF_KIND_R8), parameter :: spval = -1.0e36_ESMF_KIND_R8  ! spval
   real(ESMF_KIND_R8), parameter :: spval_init = 0.0_ESMF_KIND_R8  ! spval for initialization
+  real(ESMF_KIND_R8), parameter :: spvalu_init = -5.0_ESMF_KIND_R8  ! spval for initialization for u wind component.
   real(ESMF_KIND_R8), parameter :: spval = 0.0_ESMF_KIND_R8  ! spval
   real(ESMF_KIND_R8), parameter :: czero = 0.0_ESMF_KIND_R8  ! spval
 !BL2017b
@@ -1772,14 +1773,14 @@ module module_MEDIATOR
     call completeFieldInitialization(NState_atmExp, rc)
     if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
       line=__LINE__, file=__FILE__)) return  ! bail out
-    call state_reset(NState_atmExp, value=spval_init, rc=rc)
+    call state_reset(NState_atmExp, value=spvalu_init, rc=rc)
     if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
       line=__LINE__, file=__FILE__)) return  ! bail out
 
     call completeFieldInitialization(NState_ocnImp, rc)
     if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
       line=__LINE__, file=__FILE__)) return  ! bail out
-    call state_reset(NState_ocnImp, value=spval_init, rc=rc)
+    call state_reset(NState_ocnImp, value=spvalu_init, rc=rc)
     if (ESMF_LogFoundError(rcToCheck=rc, msg=ESMF_LOGERR_PASSTHRU, &
       line=__LINE__, file=__FILE__)) return  ! bail out
 
