@@ -1,0 +1,46 @@
+print_esmf:              .true.
+RUN_CONTINUE:            .false.
+ENS_SPS:                 .false.
+total_member:            1
+PE_MEMBER01:             51
+PE_MEMBER02:             
+PE_MEMBER03:             
+PE_MEMBER04:             
+PE_MEMBER05:             
+PE_MEMBER06:             
+PE_MEMBER07:             
+PE_MEMBER08:             
+PE_MEMBER09:             
+PE_MEMBER10:             
+PE_MEMBER11:             
+PE_MEMBER12:             
+PE_MEMBER13:             
+PE_MEMBER14:             
+PE_MEMBER15:             
+PE_MEMBER16:             
+PE_MEMBER17:             
+PE_MEMBER18:             
+PE_MEMBER19:             
+PE_MEMBER20:             
+PE_MEMBER21:             
+PE_MEMBER22:             
+PE_MEMBER23:             
+PE_MEMBER24:             
+PE_MEMBER25:             
+PE_MEMBER26:             
+PE_MEMBER27:             
+PE_MEMBER28:             
+PE_MEMBER29:             
+PE_MEMBER30:             
+PE_MEMBER31:             
+PE_MEMBER32:             
+
+
+start_year:              2017
+start_month:             11
+start_day:               24
+start_hour:              1
+start_minute:            0
+start_second:            0
+nhours_fcst:             24.0
+nhours_fcst1:            24.0
