@@ -1,0 +1,50 @@
+$ -------------------------------------------------------------------- $
+$ WAVEWATCH III NetCDF boundary input processing                       $
+$--------------------------------------------------------------------- $
+$
+$ Boundary option: READ or WRITE
+$
+ WRITE 
+$
+$ Interpolation method: 1: nearest
+$                       2: linear interpolation
+2
+$ Verbose (0, 1, 2)
+1
+$
+$ List of spectra files. These NetCDF files use the WAVEWATCH III
+$ format as described in the ww3_ounp.inp file. The files are 
+$ defined relative to the directory in which the program is run.
+$
+spc/ww3.A1_201711_spec.nc
+spc/ww3.A2_201711_spec.nc
+spc/ww3.A3_201711_spec.nc
+spc/ww3.A4_201711_spec.nc
+spc/ww3.A5_201711_spec.nc
+spc/ww3.A6_201711_spec.nc
+spc/ww3.A7_201711_spec.nc
+spc/ww3.A8_201711_spec.nc
+spc/ww3.A9_201711_spec.nc
+spc/ww3.A10_201711_spec.nc
+spc/ww3.A11_201711_spec.nc
+spc/ww3.A12_201711_spec.nc
+spc/ww3.A13_201711_spec.nc
+spc/ww3.A14_201711_spec.nc
+spc/ww3.A15_201711_spec.nc
+spc/ww3.A16_201711_spec.nc
+spc/ww3.A17_201711_spec.nc
+spc/ww3.A18_201711_spec.nc
+spc/ww3.A19_201711_spec.nc
+spc/ww3.A20_201711_spec.nc
+spc/ww3.A21_201711_spec.nc
+spc/ww3.A22_201711_spec.nc
+spc/ww3.A23_201711_spec.nc
+spc/ww3.A24_201711_spec.nc
+spc/ww3.A25_201711_spec.nc
+spc/ww3.A26_201711_spec.nc
+'STOPSTRING'
+$
+$ -------------------------------------------------------------------- $
+$ End of input file                                                    $
+$ -------------------------------------------------------------------- $
+

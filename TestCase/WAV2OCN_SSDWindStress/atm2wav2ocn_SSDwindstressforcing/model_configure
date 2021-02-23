@@ -1,0 +1,25 @@
+print_esmf:              .true.
+RUN_CONTINUE:            .false.
+ENS_SPS:                 .false.
+total_member:            1
+PE_MEMBER01:             161
+PE_MEMBER02:             
+PE_MEMBER03:             
+PE_MEMBER04:             
+PE_MEMBER05:             
+PE_MEMBER06:             
+PE_MEMBER07:             
+PE_MEMBER08:             
+PE_MEMBER09:             
+PE_MEMBER10:             
+PE_MEMBER11:             
+
+
+start_year:              2017
+start_month:             11
+start_day:               26
+start_hour:              0
+start_minute:            0
+start_second:            0
+nhours_fcst:             72.0
+nhours_fcst1:            72.0
